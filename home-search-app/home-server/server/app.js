@@ -1,6 +1,6 @@
 import express from 'express';
 import path from 'path';
-import cookieParser from'cookie-parser';
+import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
 // import routes from './routes';
@@ -9,8 +9,8 @@ import mongoose from 'mongoose';
 const app = express();
 
 //connect to db
-mongoose.connect("mongodb://127.0.0.1:27017/homesearchdb", {
-    keepAlive: true, 
+mongoose.connect("mongodb+srv://admin:admin@cluster0.lvmbi.mongodb.net/test?authSource=admin&replicaSet=atlas-8zorfc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true", {
+    keepAlive: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }, () => {
