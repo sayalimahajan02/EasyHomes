@@ -3,13 +3,13 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 import logger from 'morgan';
 import mongoose from 'mongoose';
-// import routes from './routes';
-// import model from './models';
+import routes from './routes';
+// import model from './../server/models';
 
 const app = express();
 
 //connect to db
-mongoose.connect("mongodb+srv://admin:admin@cluster0.lvmbi.mongodb.net/test?authSource=admin&replicaSet=atlas-8zorfc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true", {
+mongoose.connect("mongodb+srv://admin:admin@cluster0.lvmbi.mongodb.net/homeSearch?authSource=admin&replicaSet=atlas-8zorfc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true", {
     keepAlive: true,
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -30,6 +30,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
 
-// routes(app);
+routes(app);
 
 export default app;

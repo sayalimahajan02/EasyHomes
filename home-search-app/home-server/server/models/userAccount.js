@@ -1,23 +1,23 @@
 import mongoose from 'mongoose';
 const UserAccountSchema = new mongoose.Schema({
-    emailId: { 
-        type: String, 
+    emailId: {
+        type: String,
         required: "email id is a required property"
     },
 
-    password: { 
-        type: String, 
-        required: "Password is a required property" 
-     }
+    password: {
+        type: String,
+        required: "Password is a required property"
+    }
 },
-{
-    // timestamps: true,
-    versionKey: false
-}
+    {
+        // timestamps: true,
+        versionKey: false
+    }
 );
 
 //A virtual property named id will be copied and converted into hexa-decimal string
-UserAccountSchema.virtual('id').get(function() {
+UserAccountSchema.virtual('id').get(function () {
     return this._id.toHexString();
 });
 
