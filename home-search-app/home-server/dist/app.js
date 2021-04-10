@@ -15,13 +15,14 @@ var _morgan = _interopRequireDefault(require("morgan"));
 
 var _mongoose = _interopRequireDefault(require("mongoose"));
 
+var _routes = _interopRequireDefault(require("./routes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// import routes from './routes';
-// import model from './models';
+// import model from './../server/models';
 const app = (0, _express.default)(); //connect to db
 
-_mongoose.default.connect("mongodb://127.0.0.1:27017/homesearchdb", {
+_mongoose.default.connect("mongodb+srv://admin:admin@cluster0.lvmbi.mongodb.net/homeSearch?authSource=admin&replicaSet=atlas-8zorfc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true", {
   keepAlive: true,
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -43,7 +44,7 @@ app.use(_express.default.urlencoded({
 app.use((0, _cookieParser.default)());
 app.use(_express.default.static(_path.default.join(__dirname, 'public'))); // app.use('/', indexRouter);
 // app.use('/users', usersRouter);
-// routes(app);
 
+(0, _routes.default)(app);
 var _default = app;
 exports.default = _default;
