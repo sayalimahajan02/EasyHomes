@@ -21,7 +21,8 @@ class Header extends React.Component {
               <span>Easy Homes</span></a>
           </div>
           <nav className='right-nav'>
-            <a href='/property'>SignIn or SignUp</a>
+            <a href='/login'>SignIn</a>
+            <a href='/signup'>SignUp</a>
             <a href='/property'>Help</a>
           </nav>
         </header>
