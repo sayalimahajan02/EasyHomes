@@ -1,6 +1,7 @@
 import React from 'react';
-import './../components/Header.scss';
-import Logo from './images/homeLogo.PNG';
+import { NavLink } from 'react-router-dom';
+import './../Header/Header.scss';
+import Logo from './../images/homeLogo.PNG';
 
 class Header extends React.Component {
 
@@ -13,17 +14,18 @@ class Header extends React.Component {
       <div className='header-wrapper'>
         <header>
           <nav className='left-nav'>
-            <a href='/property'>Buy</a>
-            <a href='/property'>Sell</a>
+            <NavLink to='/aboutus'>About Us</NavLink>
+            <NavLink to='/property'>Buy</NavLink>
+            <NavLink to='/property'>Sell</NavLink>
           </nav>
           <div className='logo'>
             <a href='/'><img src={Logo} className="homeLogo" />
               <span>Easy Homes</span></a>
           </div>
           <nav className='right-nav'>
-            <a href='/login'>SignIn</a>
-            <a href='/signup'>SignUp</a>
-            <a href='/property'>Help</a>
+            <NavLink to='/login'>SignIn</NavLink>
+            <NavLink to='/signup'>SignUp</NavLink>
+            <NavLink to='/faq'>FAQs</NavLink>
           </nav>
         </header>
       </div>
