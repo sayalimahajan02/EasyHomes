@@ -45,5 +45,4 @@ router.route('/records/:id')
 
     .delete(userController.remove);
 
-
 export default router;

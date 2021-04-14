@@ -1,13 +1,11 @@
 import userService from '../services/user.service';
 
-
-
-
 //CRUD OPERATIONS
 
 const index = (request, response) => {
 
     userService.search({})
+
 
         .then((users) => {
 
@@ -112,6 +110,7 @@ const remove = (request, response) => {
         .catch(handleError(response));
 
 };
+
 
 // ERROR HANDLING
 
