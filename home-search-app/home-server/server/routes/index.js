@@ -1,13 +1,10 @@
 import UserRouter from './user.route';
-import homeSearchRouter from './homeSearch.route';
+import faqRouter from './faq.route';
 
 
 //export the routes used
 
-
-
 export default (app) => {
-
   app.use('/', UserRouter);
-  app.use('/', homeSearchRouter);
+  app.use('/', faqRouter);
 }

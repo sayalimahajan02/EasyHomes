@@ -1,5 +1,6 @@
 import React from 'react';
 import './Login.scss';
+import GoogleLogin from 'react-google-login';
 
 class Login extends React.Component{
 
@@ -10,6 +11,7 @@ class Login extends React.Component{
     this.state={
 	emailId:"",
 	password:"",
+	displayMessage:'',
 	loggedIn:false,
 	users:[]
 };
@@ -44,6 +46,34 @@ getData(){
 	.catch(error => this.setState({ error }));
   }
 
+  responseSuccessGoogle = (response) => {
+	console.log(response);
+	console.log(response.profileObj);
+	for(let i=0;i<this.state.data.length;i++) {
+		  if(this.state.data[i].emailId==response.profileObj.email && this.state.data[i].password==response.tc.login_hint){
+	  console.log('Successful login using Google');
+	  //redirect to home page
+	  this.setState({
+		email:this.state.users[i].emailId,
+		password:this.state.users[i].password,
+		loggedIn:true	
+	})
+	// sessionStorage.setItem('userID',value.id);
+	// sessionStorage.setItem('token','abcd')
+	return;
+	}
+  }
+	
+  this.setState({    
+	email:"",
+	password:"",
+	displayMessage:'User with email address is not registered , please register with google account first then try login.'
+ })  
+  }
+
+   responseErrorGoogle = (response) => {
+	console.log(response);
+  }
   submitForm(e)
 {
 	e.preventDefault()
@@ -61,9 +91,10 @@ getData(){
 	  }
 	  this.setState({    
 		email:"",
-		password:""
+		password:"",
+		displayMessage:'Credentials Invalid'
 	 })
-	  alert("Credentials Invalid")
+
 
 }
 
@@ -76,6 +107,7 @@ render(){
 					<h2 className="text-center">Log in</h2>       
 					<div className="form-group">
 						<input type="text" value={this.state.email} name="email" onChange={this.onChange} placeholder="Email" required="required"/>
+					{this.state.displayMessage}
 					</div>
 					<div className="form-group">
 						<input type="password"  name= "password" value={this.state.password} onChange={this.onChange} placeholder="Password" required="required"/>
@@ -85,6 +117,14 @@ render(){
 					</div>      
     			</form>
     	</div>
+		<br></br><br></br>
+		<GoogleLogin
+clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
+buttonText="SignIn with Google"
+onSuccess={this.responseSuccessGoogle}
+onFailure={this.responseErrorGoogle}
+cookiePolicy={'single_host_origin'}
+/>
     </div>
     )
 }

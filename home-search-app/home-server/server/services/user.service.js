@@ -65,6 +65,6 @@ export default {
     get: get,
     create: create,
     update: update,
-    remove: remove,
+    remove: remove
 
 }
