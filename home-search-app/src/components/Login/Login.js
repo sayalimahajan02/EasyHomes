@@ -48,7 +48,7 @@ class Login extends React.Component {
 		console.log(response);
 		console.log(response.profileObj);
 		for (let i = 0; i < this.state.data.length; i++) {
-			if (this.state.data[i].emailId == response.profileObj.email && this.state.data[i].password == response.tc.login_hint) {
+			if (this.state.data[i].emailId === response.profileObj.email && this.state.data[i].password === response.tc.login_hint) {
 				console.log('Successful login using Google');
 				//redirect to home page
 				this.setState({
@@ -76,7 +76,7 @@ class Login extends React.Component {
 		e.preventDefault()
 		const { email, password } = this.state
 		for (const [index, value] of this.state.data.entries()) {
-			if (value.emailId == email && value.password == password) {
+			if (value.emailId === email && value.password === password) {
 				this.setState({
 					loggedIn: true
 
