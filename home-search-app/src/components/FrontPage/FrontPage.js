@@ -1,7 +1,7 @@
 import React from 'react';
-import './../components/FrontPageAndSearch.scss';
-import Video1 from './../components/videos/house1.mp4';
-import SearchBar from './../components/SearchBar';
+import './../FrontPage/FrontPageAndSearch.scss';
+import Video1 from './../videos/house1.mp4';
+import SearchBar from './../FrontPage/SearchBar';
 
 class FrontPage extends React.Component {
   constructor(props) {
