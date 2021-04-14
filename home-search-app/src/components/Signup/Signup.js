@@ -33,7 +33,7 @@ export default class Register extends React.Component {
   RegisterMethod(e) {
     e.preventDefault();
     for (let i = 0; i < this.state.users.length; i++) {
-      if (this.state.users[i].emailId == this.state.email) {
+      if (this.state.users[i].emailId === this.state.email) {
         this.setState({ displayMessage: 'User with this email address already registered' });
         return;
       }
@@ -48,7 +48,7 @@ export default class Register extends React.Component {
     console.log(response);
     console.log(response.profileObj);
     for (let i = 0; i < this.state.users.length; i++) {
-      if (this.state.users[i].emailId == response.profileObj.email) {
+      if (this.state.users[i].emailId === response.profileObj.email) {
         this.setState({ displayMessage: 'User with this email address already registered. Please login' });
         return;
       }
