@@ -15,8 +15,14 @@ export default class faq extends React.Component {
 }
 getData(){
 	const tmpArray = [];
-	fetch('http://localhost:3000/faq/')
-	 .then(response => response.json())
+	fetch('http://localhost:3000/faq/',{
+    'Cache-Control': 'no-cache'
+  })
+	.then(response => {
+
+    console.log("response:" + response) 
+    
+    })
 	.then(response => {
 		for (var i = 0; i < response.length; i++) {
 			tmpArray.push(response[i])
@@ -56,6 +62,7 @@ this.setState({
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange}/>
             </div>
             <div>
+             
             <ul>
           {this.state.filtered.map(item => (
             <li key={item}>
