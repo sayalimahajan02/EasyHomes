@@ -13,7 +13,7 @@ class FrontPage extends React.Component {
       <div className='display'>
         <div className='front-page-wrapper'>
           <div className='video-wrapper'>
-            <video autoPlay muted loop poster='' webkit-playsinline='true' playsinline='true'>
+            <video autoPlay muted loop poster='' >
               <source src={Video1} type='video/mp4' />
             </video>
           </div>
@@ -25,10 +25,10 @@ class FrontPage extends React.Component {
             <div className='front-page-tabs'>
               <ul>
                 <li className='active'>
-                  <a href='/buy'>Buy</a>
+                  <a href='/property'>Buy</a>
                 </li>
                 <li className=''>
-                  <a href='/sell'>Sell</a>
+                  <a href='/seller'>Sell</a>
                 </li>
               </ul>
             </div>
