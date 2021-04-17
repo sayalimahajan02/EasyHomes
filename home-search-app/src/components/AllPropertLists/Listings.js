@@ -18,6 +18,7 @@ class Listings extends Component {
         }
         // box
         return listingsData.map((listing, index) => {
+            console.log(listing.propertyDesc)
             if (this.props.globalState.view === 'box') {
                 return (
                     <div className="col-md-3" key={index}>
@@ -37,16 +38,16 @@ class Listings extends Component {
                                         <div className="listing-details">
                                             <div className="floor-space">
                                                 <i className="fa fa-square-o" aria-hidden="true"></i>
-                                                <span>{listing.floorSpace} ft&sup2;</span>
+                                                <span>{listing.propertySqftArea} ft&sup2;</span>
                                             </div>
                                             <div className="bd-ba-icons">
                                                 <div className="bedrooms">
                                                     <i className="fa fa-bed" aria-hidden="true"></i>
-                                                    <span>{listing.bedrooms}</span>
+                                                    <span>{listing.bed}</span>
                                                 </div>
                                                 <div className="bathrooms">
                                                     <i className="fa fa-bath" aria-hidden="true"></i>
-                                                    <span>{listing.bathrooms}</span>
+                                                    <span>{listing.bath}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -55,8 +56,8 @@ class Listings extends Component {
                                 </div>
                             </div>
                             <div className="bottom-info">
-                                <span className="price">${listing.price}</span>
-                                <span className="location"><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.city}, {listing.state}</span>
+                                <span className="price">${listing.propertyPrice}</span>
+                                <span className="location"><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.propertyCity}, {listing.propertyState}</span>
                             </div>
 
                         </div>
@@ -68,7 +69,7 @@ class Listings extends Component {
                     <div className="col-md-12 col-lg-6" key={index}>
                         <div className="listing">
                             <div className="listing-img" style={{ background: `url("${listing.image}") no-repeat center center` }}>
-                                <span className="address">{listing.address}</span>
+                                <span className="address">{listing.propertyDesc}</span>
                                 <div className="details">
                                     <div className="col-md-3">
                                         <div className="user-img"> </div>
@@ -82,16 +83,16 @@ class Listings extends Component {
                                         <div className="listing-details">
                                             <div className="floor-space">
                                                 <i className="fa fa-square-o" aria-hidden="true"></i>
-                                                <span>{listing.floorSpace} ft&sup2;</span>
+                                                <span>{listing.propertySqftArea} ft&sup2;</span>
                                             </div>
                                             <div className="bd-ba-icons">
                                                 <div className="bedrooms">
                                                     <i className="fa fa-bed" aria-hidden="true"></i>
-                                                    <span>{listing.bedrooms}</span>
+                                                    <span>{listing.bed}</span>
                                                 </div>
                                                 <div className="bathrooms">
                                                     <i className="fa fa-bath" aria-hidden="true"></i>
-                                                    <span>{listing.bathrooms}</span>
+                                                    <span>{listing.bath}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -100,8 +101,8 @@ class Listings extends Component {
                                 </div>
                             </div>
                             <div className="bottom-info">
-                                <span className="price">${listing.price}</span>
-                                <span className="location"><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.city}, {listing.state}</span>
+                                <span className="price">${listing.propertyPrice}</span>
+                                <span className="location"><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.propertyCity}, {listing.propertyState}</span>
                             </div>
 
                         </div>
