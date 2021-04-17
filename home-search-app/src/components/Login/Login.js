@@ -1,18 +1,21 @@
 import React from 'react';
 import './Login.scss';
 import GoogleLogin from 'react-google-login';
+import Header from './../Header/Header';
 
 class Login extends React.Component {
 
 	constructor(props) {
 		super(props)
-		let loggedIn = false
 		this.state = {
 			emailId: "",
 			password: "",
 			displayMessage: '',
-			loggedIn: false,
-			users: []
+			users: [],
+			username:"",
+			loggedIn: false
+			
+
 		};
 		this.onChange = this.onChange.bind(this)
 		this.submitForm = this.submitForm.bind(this)
@@ -45,20 +48,24 @@ class Login extends React.Component {
 	}
 
 	responseSuccessGoogle = (response) => {
-		console.log(response);
 		console.log(response.profileObj);
 		for (let i = 0; i < this.state.data.length; i++) {
 			if (this.state.data[i].emailId === response.profileObj.email && this.state.data[i].password === response.tc.login_hint) {
 				console.log('Successful login using Google');
 				//redirect to home page
 				this.setState({
-					email: this.state.users[i].emailId,
-					password: this.state.users[i].password,
-					loggedIn: true
+					email: this.state.data[i].emailId,
+					password: this.state.data[i].password,
+					loggedIn: true,
+					username : this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@"))
 				})
 				// sessionStorage.setItem('userID',value.id);
-				// sessionStorage.setItem('token','abcd')
-				return;
+				localStorage.setItem('loggedIn',true);
+				localStorage.setItem('username',this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@")));
+				localStorage.setItem('user',JSON.stringify(this.state.data[i]));
+				//let userProfObj=JSON.parse(localStorage.getItem('user'));
+				this.props.history.push("/");
+				window.location.reload();
 			}
 		}
 
@@ -68,22 +75,36 @@ class Login extends React.Component {
 			displayMessage: 'User with email address is not registered , please register with google account first then try login.'
 		})
 	}
+	
+// componentDidMount(){
 
+
+// }
+componentWillUpdate(nexProps, nextState){
+	//localStorage.setItem('loggedIn',this.state.loggedIn);
+	//localStorage.setItem('username',this.state.username);
+}
 	responseErrorGoogle = (response) => {
 		console.log(response);
 	}
 	submitForm(e) {
 		e.preventDefault()
 		const { email, password } = this.state
-		for (const [index, value] of this.state.data.entries()) {
-			if (value.emailId === email && value.password === password) {
+		for (let i = 0; i < this.state.data.length; i++) {
+			if (this.state.data[i].emailId === email && this.state.data[i].password === password) {
 				this.setState({
+					email: this.state.data[i].emailId,
+					password: this.state.data[i].password,
+					username: this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@")),
 					loggedIn: true
-
 				})
-				// sessionStorage.setItem('userID',value.id);
-				// sessionStorage.setItem('token','abcd')
-				return;
+
+				localStorage.setItem('loggedIn',true);
+				localStorage.setItem('username',this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@")));
+				localStorage.setItem('user',JSON.stringify(this.state.data[i]));
+				this.props.history.push("/");
+				window.location.reload();
+
 			}
 		}
 		this.setState({

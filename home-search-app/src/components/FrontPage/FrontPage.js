@@ -5,11 +5,25 @@ import SearchBar from './../FrontPage/SearchBar';
 
 class FrontPage extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
+    this.state={
+      loggedIn : false,
+      username : ''
+    }
   }
+  
+  componentDidMount(){
+    this.setState({loggedIn : localStorage.getItem('loggedIn')});
+    this.setState({username : localStorage.getItem('username')});
+    }
 
+    componentWillMount(){
+      this.setState({loggedIn : localStorage.getItem('loggedIn')});
+      this.setState({username : localStorage.getItem('username')});
+      }
   render() {
     return (
+      
       <div className='display'>
         <div className='front-page-wrapper'>
           <div className='video-wrapper'>
