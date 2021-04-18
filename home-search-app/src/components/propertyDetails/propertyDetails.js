@@ -24,7 +24,8 @@ class propertyDetails extends React.Component{
             "seller":[],
             "buyer":[],
             "data":[],
-            disableBtn:false
+            disableBtn:false,
+            btnName: "Start an Offer"
           }
         this.handleChange = this.handleChange.bind(this);
         this.addToBuyer = this.addToBuyer.bind(this);
@@ -39,22 +40,8 @@ class propertyDetails extends React.Component{
     //when page loads
     componentWillMount(){
       this.getData()
-      // this.checkProp()
     }
 
-    // checkProp(){
-    //   console.log("heyy "+ this.state.disableBtn)
-    //   if(!this.state.data.buyer){
-    //     this.setState({
-    //       disableBtn: false
-    //     })
-    //   }
-    //   else{
-    //     this.setState({
-    //       disableBtn: true
-    //     })
-    //   }
-    // }
 
     addToBuyer(){
       
@@ -65,7 +52,6 @@ class propertyDetails extends React.Component{
           data: temp,
           disableBtn: true
         })
-        // document.getElementsByClassName("offer-btn-class").value = "Property Sold"
         this.putData(this.state.data,this.state.disableBtn)
       }
       else{
@@ -90,15 +76,21 @@ class propertyDetails extends React.Component{
                 this.setState({
                     data: responseList
                 })
-              // console.log("hey  "+ this.state.data.propertyDesc)
+                if(responseList.buyer){
+                  this.setState({
+                    disableBtn: true,
+                    btnName: "Property Sold"
+                  })
+                }
             })
+
             .catch(error => {
                 console.log("error:" + error)
             });
           }
 
     //put data
-    putData(data,disableBtn) {
+    putData(data) {
       fetch('http://localhost:3000/homeSearch/607b7793644d971645f3f233', {
           method: 'PUT',
           headers: {
@@ -106,8 +98,7 @@ class propertyDetails extends React.Component{
               'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-              buyer: this.state.data.buyer,
-              disableBtn: this.state.data.disableBtn
+              buyer: this.state.data.buyer
           })
       }).then(response => {
           console.log("response:" + response.body)
@@ -135,7 +126,7 @@ class propertyDetails extends React.Component{
                 </div>
                 <div class ="column2">
                   <div>{this.state.data.propertyName}</div>
-                  <div className = "todo-expand">{this.state.data.propertyDesc}</div>
+                  <div className = "sample-box">{this.state.data.propertyDesc}</div>
                     
                     <table>
                     <tr>
@@ -149,7 +140,7 @@ class propertyDetails extends React.Component{
                       <td>Sqft</td>
                     </tr>
                   </table>
-                  <div className = "todo-expand">
+                  <div className = "sample-box">
                     <label>Property Type</label>  
                     <input id = "proptype" value = {this.state.data.propertyType} disabled></input>
                     <label>Property Build Date</label>  
@@ -165,7 +156,7 @@ class propertyDetails extends React.Component{
                             <input id = "contact" value = {this.state.desc} disabled></input>
                           </div>
                     </div> : null}
-                  <div className = "offer-btn-class"><button disabled={this.state.disableBtn} className="offer-btn" onClick ={this.addToBuyer}>Start an Offer</button></div>
+                  <div className = "offer-btn-class"><button disabled={this.state.disableBtn} className="offer-btn" onClick ={this.addToBuyer}>{this.state.btnName}</button></div>
               </div>
           </div>
           </>
