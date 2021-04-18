@@ -1,12 +1,111 @@
 .sliderimg{
-    height: 500px;
-    width: 500px;
-    margin-left: 1cm;
-  }
-
-  .item-grid{
-    display: grid;
-    padding: 1cm;
-    grid-template-columns: auto auto;
-    
+  height: 500px;
+  width: 100%;
+  margin-left: 1cm;
 }
+
+.column1 {
+  box-sizing: border-box;
+  // background-color: yellow;
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+.column2 {
+  box-sizing: border-box;
+  // background-color: pink;
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  box-sizing: border-box;
+  content: "";
+  display: table;
+  clear: both;
+}
+.block-details{
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  padding: 5px;  
+}
+//add todo styles
+.seller-details {
+  display: flex;
+  justify-content: center;
+  padding: 0.5cm;
+  border: solid yellow;
+  background-color: lightpink;
+}
+.contact-seller-btn{
+  width: 100%;
+  border: 2px solid black;
+  // background-color: lightpink;
+}
+
+html {
+// background-image: url("../images/propbgimg.jpeg");
+background-repeat: no-repeat;
+font-family: "Comic Sans MS", cursive, sans-serif;
+box-sizing: border-box;
+background-size: cover;
+}
+
+table{
+background-color:lightcoral;
+margin: 0.1cm;
+text-align: center;
+}
+.todo-expand{
+// margin-right: 3cm;
+// margin-bottom: 0.5cm;
+display: grid;
+background-color: pink;
+border: 3px solid yellow;
+padding: 0.5cm;
+grid-row-gap: 10px;
+// grid-template-rows: auto auto auto auto;
+}
+
+// .todo-expand input{
+//   padding: 5px;
+// }
+table{
+width: 100%;
+}
+
+table th {
+padding-top: 12px;
+padding-bottom: 12px;
+text-align: center;
+}
+.prop-add{
+// display: grid;
+background-color: pink;
+border: 3px solid yellow;
+padding: 0.5cm;
+grid-row-gap: 10px;
+width:70%;
+float: left;
+}
+.prop-price{
+// display: grid;
+background-color: pink;
+border: 3px solid yellow;
+padding: 0.5cm;
+grid-row-gap: 10px;
+width:30%;
+float:right;
+}
+.offer-btn{
+width:100%;
+padding: 1cm;
+// background-color: lightgreen;
+}
+.offer-btn-class{
+margin: 1cm;
+}
+
