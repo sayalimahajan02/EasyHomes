@@ -9,23 +9,21 @@ class propertyDetails extends React.Component{
     constructor(props){
         super(props);
         this.state={
-            "propertyName":"",
-            "propertyDesc":"",
-            "propertyType":"",
-            "propertySqftArea":"",
-            "propertyPrice":0,
-            "propertyStreet":"",
-            "bed":0,
-            "bath":0,
-            "propertyCity":"",
-            "propertyState":"",
-            "propertyZipcode":0,
-            "propertyBuildDate":"",
-            "seller":[],
-            "buyer":[],
-            "data":[],
-            disableBtn:false,
-            btnName: "Start an Offer"
+
+            propertyName:"",
+            propertyDesc:"",
+            propertyType:"",
+            propertySqftArea:"",
+            propertyPrice:0,
+            propertyStreet:"",
+            propertyCity:"",
+            propertyState:"",
+            propertyZipcode:0,
+            propertyBuildDate:"",
+            selectedImages:[],
+            seller:[],
+            buyer:[],
+            data:[]
           }
         this.handleChange = this.handleChange.bind(this);
         this.addToBuyer = this.addToBuyer.bind(this);
@@ -159,6 +157,30 @@ class propertyDetails extends React.Component{
                   <div className = "offer-btn-class"><button disabled={this.state.disableBtn} className="offer-btn" onClick ={this.addToBuyer}>{this.state.btnName}</button></div>
               </div>
           </div>
+          {/* <div class = "item-grid"> */}
+            <div>
+                <AliceCarousel autoPlay autoPlayInterval="3000">
+                    <img src={img1} className="sliderimg"/>
+                    <img src={img1} className="sliderimg"/>
+                    <img src={img1} className="sliderimg"/>
+                    <img src={img1} className="sliderimg"/>
+
+                </AliceCarousel>
+              </div> 
+              
+              <div className = "prop-det">{this.state.data.propertyDesc}</div>
+              {/* <div className = "imageprop">
+              {
+                this.state.data.selectedImages & this.state.data.selectedImages.forEach(per =>{
+                  return(
+                    <img src={per}></img>
+                  )
+                }) 
+              }
+
+              </div> */}
+          {/* </div> */}
+            
           </>
         )
     }

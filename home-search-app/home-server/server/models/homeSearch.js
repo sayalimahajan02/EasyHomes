@@ -41,7 +41,10 @@ const PropertySchema = new mongoose.Schema(
         },
         buyer: {
             type: Object
-        }
+        },
+        selectedImages: {
+            type: Array
+        },
     },
     {
         versionKey: false
