@@ -1,141 +1,208 @@
 import React, {Component} from 'react';
-import './../components/Seller.css'
-
+import './../Seller/Seller.scss';
+import axios from "axios";
 class Seller extends Component {
 
- constructor(props) {
+     constructor(props) {
      super(props)
      this.state = {
-       PropertyId: '',
-       PropertyName: '',
-       PropertyDescription: '',
-       PropertyType: '',
-       PropertyArea: '',
-       PropertyPrice: '',
-       PropertyStreet: '',
-       PropertyCity: '',
-       PropertyState: '',
-       PropertyZipCode: '',
-       PropertyBuildDate: ''  
+        propertyId: '',
+        propertyName: '',
+        propertyDesc: '',
+        propertyType: '',
+        propertySqftArea: '',
+        propertyPrice: '',
+        propertyStreet: '',
+        propertyCity: '',
+        propertyState: '',
+        propertyZipcode: '',
+        propertyBuildDate: '',
+        selectedImages: [],
      }
  }
 
- handlePropertyIdChange = (event) => {
+ handlepropertyIdChange = (event) => {
     this.setState({
-        PropertyId: event.target.value
+        propertyId: event.target.value
         })
  }
 
- handlePropertyNameChange = (event) => {
+ handlepropertyNameChange = (event) => {
     this.setState({
-        PropertyName: event.target.value
+        propertyName: event.target.value
         })
  }
 
- handlePropertyDescriptionChange = (event) => {
+ handlepropertyDescChange = (event) => {
     this.setState({
-        PropertyDescription: event.target.value
+        propertyDesc: event.target.value
         })
  }
- handlePropertyTypeChange = (event) => {
+ handlepropertyTypeChange = (event) => {
     this.setState({
-        PropertyType: event.target.value
+        propertyType: event.target.value
         })
  }
- handlePropertyAreaChange = (event) => {
+ handlepropertySqftAreaChange = (event) => {
     this.setState({
-        PropertyArea: event.target.value
+        propertySqftArea: event.target.value
         })
  }
- handlePropertyPriceChange = (event) => {
+ handlepropertyPriceChange = (event) => {
     this.setState({
-        PropertyPrice: event.target.value
+        propertyPrice: event.target.value
         })
  }
- handlePropertyStreetChange = (event) => {
+ handlepropertyStreetChange = (event) => {
     this.setState({
-        PropertyStreet: event.target.value
+        propertyStreet: event.target.value
         })
  }
- handlePropertyCityChange = (event) => {
+ handlepropertyCityChange = (event) => {
     this.setState({
-        PropertyCity: event.target.value
+        propertyCity: event.target.value
         })
  }
- handlePropertyStateChange = (event) => {
+ handlepropertyStateChange = (event) => {
     this.setState({
-        PropertyState: event.target.value
+        propertyState: event.target.value
         })
  }
- handlePropertyZipcodeChange = (event) => {
+ handlepropertyZipcodeChange = (event) => {
     this.setState({
-        PropertyZipCode: event.target.value
+        propertyZipcode: event.target.value
         })
  }
- handlePropertyBuildDateChange = (event) => {
+ handlepropertyBuildDateChange = (event) => {
     this.setState({
-        PropertyBuildDate: event.target.value
+        propertyBuildDate: event.target.value
         })
  }
+
+ getData() {
+    
+    const tmpArray = [];
+    fetch('http://localhost:3000/homeSearch/',{
+        method: 'POST',
+        headers: {
+            Accept: 'application/json',
+                    'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(this.state)
+    }).then(response => {
+            console.log(response)
+        })
+        .catch(error =>{
+            console.log(error)
+        })
+}
 
  handleSubmit = (event) => {
-     alert(`${this.state.PropertyId} ${this.state.PropertyName} ${this.state.PropertyDescription} ${this.state.PropertyType} ${this.state.PropertyArea} 
-     ${this.state.PropertyPrice} ${this.state.PropertyStreet} ${this.state.PropertyCity} ${this.state.PropertyState} ${this.state.PropertyZipCode} 
-     ${this.state.PropertyBuildDate}`)
+    
      event.preventDefault()
+     this.getData();
  }
+
+ handleImageChange = (e) => {
+    if (e.target.files) {
+        const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
+        this.setState({
+            
+            selectedImages:[...this.state.selectedImages,...filesArray]
+
+        })
+        console.log(filesArray);
+        console.log(this.state.selectedImages);
+
+        Array.from(e.target.files).map(
+            (file) => URL.revokeObjectURL(file) 
+        );
+    }
+};
+
+renderPhotos = (source) => {
+    console.log('source: ', source);
+    return source.map((photo) => {
+        console.log("pic is: ",photo);
+        return <img src={photo} alt="" key={photo} />;
+        
+    });
+};
 
 render() {
         return(
-            <form onSubmit= {this.handleSubmit}>
-                <div className= "form">
-                <div>
-                    <label>PropertyId</label>
-                    <input type='number' value= {this.state.PropertyId} onChange = {this.handlePropertyIdChange}/>
+            <div className = "bkImage">
+             <form onSubmit= {this.handleSubmit}>
+
+            <div className= "formContainer">
+                
+                <div className="lblContainer">
+                    <label className="desc">Property Id :</label>
+                    <input className= "inputProperty" type='number' value= {this.state.propertyId} onChange = {this.handlepropertyIdChange}/>
                 </div>
-                <div>
-                <label>Property Name</label>
-                    <input type='text' value= {this.state.PropertyName} onChange = {this.handlePropertyNameChange}/>
+                <div className="lblContainer">
+                <label className="desc">Name :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyName} onChange = {this.handlepropertyNameChange}/>
                 </div>
-                <div>
-                <label>Property Description</label>
-                    <input type='text' value= {this.state.PropertyDescription} onChange = {this.handlePropertyDescriptionChange}/>
+                <div className="lblContainer">
+                <label className="desc">Description :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyDesc} onChange = {this.handlepropertyDescChange}/>
                 </div>
-                <div>
-                <label>Property Type</label>
-                    <input type='text' value= {this.state.PropertyType} onChange = {this.handlePropertyTypeChange}/>
+                <div className="lblContainer">
+                <label className="desc">Type :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyType} onChange = {this.handlepropertyTypeChange}/>
                 </div>
-                <div>
-                <label>Property Area</label>
-                    <input type='text' value= {this.state.PropertyArea} onChange = {this.handlePropertyAreaChange}/>
+                <div className="lblContainer">
+                <label className="desc">Area :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertySqftArea} onChange = {this.handlepropertySqftAreaChange}/>
                 </div>
-                <div>
-                <label>Property Price</label>
-                    <input type='text' value= {this.state.PropertyPrice} onChange = {this.handlePropertyPriceChange}/>
+                <div className="lblContainer">
+                <label className="desc">Price :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyPrice} onChange = {this.handlepropertyPriceChange}/>
                 </div>
-                <div>
-                <label>Property Street</label>
-                    <input type='text' value= {this.state.PropertyStreet} onChange = {this.handlePropertyStreetChange}/>
+                <div className="lblContainer">
+                <label className="desc">Street :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyStreet} onChange = {this.handlepropertyStreetChange}/>
                 </div>
-                <div>
-                <label>Property City</label>
-                    <input type='text' value= {this.state.PropertyCity} onChange = {this.handlePropertyCityChange}/>
+                <div className="lblContainer">
+                <label className="desc">City :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyCity} onChange = {this.handlepropertyCityChange}/>
                 </div>
-                <div>
-                <label>Property State</label>
-                    <input type='text' value= {this.state.PropertyState} onChange = {this.handlePropertyStateChange}/>
+                <div className="lblContainer">
+                <label className="desc">State :</label>
+                    <input className= "inputProperty" type='text' value= {this.state.propertyState} onChange = {this.handlepropertyStateChange}/>
                 </div>
-                <div>
-                <label>Property ZipCode</label>
-                    <input type='text' value= {this.state.PropertyZipCode} onChange = {this.handlePropertyZipCodeChange}/>
+                <div className="lblContainer">
+                <label className="desc">ZipCode :</label>
+                    <input className= "inputProperty" type='number' value= {this.state.propertyZipcode} onChange = {this.handlepropertyZipcodeChange}/>
                 </div>
-                <div>
-                <label>Property Build Date</label>
-                    <input type='text' value= {this.state.PropertyBuildDate} onChange = {this.handlePropertyBuildDateChange}/>
+                <div className="lblContainer">
+                <label className="desc">Build Date :</label>
+                    <input className= "inputProperty" type='date' value= {this.state.propertyBuildDate} onChange = {this.handlepropertyBuildDateChange}/>
                 </div>
-                <button type="submit">Add Property</button>
+                <label htmlFor="file" className="labelImg">
+                      <i className="material-icons">add_a_photo</i>
+                    </label>
+                
+                <button onClick={this.handleSubmit} className="btnprop" type="submit">Add Property</button>
+                
                 </div>
-            </form>
+                </form>
+                
+
+                <div className="imgUp">
+                    
+                    <input className= "inputImg" type = "file" multiple id="file"  onChange={this.handleImageChange}/>
+                    <div className = "label-holder">
+                    
+                    </div>
+
+                    <div className="result">
+                        {this.renderPhotos(this.state.selectedImages)}
+                    </div>
+
+                </div>
+            </div>
         )
     }
 }

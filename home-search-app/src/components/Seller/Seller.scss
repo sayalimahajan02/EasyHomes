@@ -1,0 +1,130 @@
+
+.formContainer {
+    background-color: #068a99f5;
+    width: 34%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 0px 10px;
+    display: grid;
+    float: right;
+    border-style: inset;
+}
+
+
+.desc {
+    width:180px;
+    clear:left;
+    text-align:right;
+    padding-right:10px;
+    font-size: larger;
+    padding: 10px;
+    
+}
+
+.inputProperty, .desc {
+    float:left;
+}
+.inputProperty {
+    padding: 10px;
+    border: 2px solid #068a998e;
+    border-radius: 15px;
+    font-size: 20px;
+    
+}
+
+.btnprop {
+    margin-top: 5%;
+    text-align: center;
+    padding: 5px;
+    border: 2px solid #068a998e;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 25px;
+    background-color: #068a998e;
+    
+}
+
+
+.bkImage{
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(163, 187, 238, 0.425)), url(../images/sellerbackground.jpg);
+  // background-color: #068a998e;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+}
+
+#file[type="file"] {
+	display: none;
+}
+
+
+.label-holder {
+  width: 100%;
+  height: 50px;
+  margin-top: 3em;
+  display: grid;
+  place-items: center;
+}
+
+.labelImg{
+  height: 50px;
+  width: 20%;
+  margin-left: auto;
+  margin-right: auto;
+  background-color:#000000;
+  color: white;
+  display: grid;
+  place-items: center;
+  font-size: 2.5rem ;
+  cursor: pointer;
+  margin-top: 10px;
+  border-radius: 25px;
+  background-color: #174b3ea8;
+}
+
+.result{
+  min-height: auto;
+  width: 86%;
+  margin-top:1rem ;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left; 
+  border-style: inset;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #068a99f5;
+  // overflow-y: scroll;
+  // border-right: 6px solid rgba(129, 25, 25, 0.795);
+  // height: 600px;
+  
+}
+
+img{
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+  padding: 0.75rem;
+  
+}
+
+.imgUp {
+  display: grid;
+  width: 64%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btnImg {
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
+.lblContainer {
+  width: 100%;
+}

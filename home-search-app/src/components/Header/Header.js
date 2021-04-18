@@ -33,7 +33,7 @@ componentDidMount(){
           <nav className='left-nav'>
             <NavLink to='/aboutus'>About Us</NavLink>
             <NavLink to='/property'>Buy</NavLink>
-            <NavLink to='/property'>Sell</NavLink>
+            <NavLink to='/seller'>Sell</NavLink>
           </nav>
           <div className='logo'>
             <a href='/'><img src={Logo} className="homeLogo" />

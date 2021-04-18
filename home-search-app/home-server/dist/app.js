@@ -17,6 +17,8 @@ var _mongoose = _interopRequireDefault(require("mongoose"));
 
 var _routes = _interopRequireDefault(require("./routes"));
 
+var _cors = _interopRequireDefault(require("cors"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // import model from './../server/models';
@@ -36,6 +38,7 @@ _mongoose.default.connection.on('connected', () => {
   console.log('connected to mongo');
 });
 
+app.use((0, _cors.default)());
 app.use((0, _morgan.default)('dev'));
 app.use(_express.default.json());
 app.use(_express.default.urlencoded({
