@@ -112,6 +112,22 @@ const remove = (request, response) => {
         .catch(handleError(response));
 
 };
+//get aggregation data
+const aggregation = (request, response) => {
+
+    homeSearchService.aggregation({})
+
+        .then((homeSearch) => {
+
+            response.status(200);
+
+            response.json(homeSearch);
+
+        })
+
+        .catch(handleError(response));
+
+};
 
 // ERROR HANDLING
 
@@ -143,6 +159,8 @@ export default {
 
     update: update,
 
-    remove: remove
+    remove: remove,
+    
+    aggregation: aggregation
 
 }

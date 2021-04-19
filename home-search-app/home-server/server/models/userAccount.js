@@ -8,7 +8,12 @@ const UserAccountSchema = new mongoose.Schema({
     password: {
         type: String,
         required: "Password is a required property"
-    }
+    },
+    contact: {
+
+        type: String
+        
+        }
 },
     {
         // timestamps: true,

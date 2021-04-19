@@ -41,6 +41,30 @@ const create = (request, response) => {
 
 };
 
+// CRUD: DELETE OPERATION
+
+const remove = (request, response) => {
+
+    const id = request.params.id;
+
+    faqService.remove(id)
+
+        .then((users) => {
+
+            response.status(200);
+
+            response.json({
+
+                message: "Delete Successful"
+
+            });
+
+        })
+
+        .catch(handleError(response));
+
+};
+
 // ERROR HANDLING
 
 const handleError = (response) => {
@@ -64,6 +88,7 @@ const handleError = (response) => {
 export default {
 
     index: index,
-    create:create
+    create:create,
+    remove: remove
 
 }

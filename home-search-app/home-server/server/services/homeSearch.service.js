@@ -60,11 +60,25 @@ const remove = (id) => {
     return promise;
 }
 
+const aggregation = () => {
+    const promise = HomeSearch.aggregate([
+        {
+          '$group': {
+            '_id': '$propertyCity', 
+            'total': {
+              '$sum': 1
+            }
+          }
+        }
+      ])
+    return promise;
+}
+
 export default {
     search: search,
     get: get,
     create: create,
     update: update,
     remove: remove,
-
+    aggregation: aggregation
 }
