@@ -9,21 +9,25 @@ class propertyDetails extends React.Component{
     constructor(props){
         super(props);
         this.state={
-
-            propertyName:"",
-            propertyDesc:"",
-            propertyType:"",
-            propertySqftArea:"",
-            propertyPrice:0,
-            propertyStreet:"",
-            propertyCity:"",
-            propertyState:"",
-            propertyZipcode:0,
-            propertyBuildDate:"",
+            "propertyName":"",
+            "propertyDesc":"",
+            "propertyType":"",
+            "propertySqftArea":"",
+            "propertyPrice":0,
+            "propertyStreet":"",
+            "bed":0,
+            "bath":0,
             selectedImages:[],
-            seller:[],
-            buyer:[],
-            data:[]
+            "propertyCity":"",
+            "propertyState":"",
+            "propertyZipcode":0,
+            "propertyBuildDate":"",
+            "seller":[],
+            "buyer":[],
+            "data":[],
+            temp:[],
+            disableBtn:false,
+            btnName: "Start an Offer"
           }
         this.handleChange = this.handleChange.bind(this);
         this.addToBuyer = this.addToBuyer.bind(this);
@@ -34,12 +38,12 @@ class propertyDetails extends React.Component{
     handleChange=(event,field)=>{ 
         this.setState({[field]:event.target.value})
       }
-
+    
     //when page loads
     componentWillMount(){
-      this.getData()
-    }
+      this.getData();
 
+    }
 
     addToBuyer(){
       
@@ -68,16 +72,18 @@ class propertyDetails extends React.Component{
     // Get Data 
     getData(){
       const tmpArray =[];
-      fetch('http://localhost:3000/homeSearch/607b7793644d971645f3f233')
+      const apiUrl = 'http://localhost:3000/homeSearch/' + this.props.location.state.propertyId;
+      fetch(apiUrl)
       .then(response => response.json())
      .then(responseList => {
                 this.setState({
-                    data: responseList
+                    data: responseList,
+                    temp: JSON.parse(responseList)
                 })
                 if(responseList.buyer){
                   this.setState({
                     disableBtn: true,
-                    btnName: "Property Sold"
+                    btnName: "Property Sold",
                   })
                 }
             })
@@ -89,7 +95,8 @@ class propertyDetails extends React.Component{
 
     //put data
     putData(data) {
-      fetch('http://localhost:3000/homeSearch/607b7793644d971645f3f233', {
+      const apiUrl = 'http://localhost:3000/homeSearch/' + this.props.location.state.propertyId;
+      fetch(apiUrl, {
           method: 'PUT',
           headers: {
               Accept: 'application/json',
@@ -114,11 +121,20 @@ class propertyDetails extends React.Component{
           <> 
           <div class="row">
                 <div className="column1">
-                    <AliceCarousel autoPlay autoPlayInterval="3000">
+                  {this.state.temp.map(item => {
+                    <div>hey</div>
+                  })}
+                    {/* <AliceCarousel autoPlay autoPlayInterval="3000"> */}
+                    {/* {JSON.parse(this.state.data).selectedImages.map(imgPath => (
+                            // <img src={imgPath} className = "sliderimg"></img>
+                            <div className = "sample-box">1{imgPath}</div>
+                    ))} */}
+                    {/* </AliceCarousel> */}
+                    {/* <AliceCarousel autoPlay autoPlayInterval="3000">
                         <img src={img1} className="sliderimg"/>
                         <img src={img1} className="sliderimg"/>
                         <img src={img1} className="sliderimg"/>
-                    </AliceCarousel>  
+                    </AliceCarousel>   */}
                       <div class="prop-add">{this.state.data.propertyStreet}, {this.state.data.propertyCity}, {this.state.data.propertyState} - {this.state.data.propertyZipcode}</div>
                       <div class="prop-price">${this.state.data.propertyPrice}</div>
                 </div>
@@ -157,30 +173,6 @@ class propertyDetails extends React.Component{
                   <div className = "offer-btn-class"><button disabled={this.state.disableBtn} className="offer-btn" onClick ={this.addToBuyer}>{this.state.btnName}</button></div>
               </div>
           </div>
-          {/* <div class = "item-grid"> */}
-            <div>
-                <AliceCarousel autoPlay autoPlayInterval="3000">
-                    <img src={img1} className="sliderimg"/>
-                    <img src={img1} className="sliderimg"/>
-                    <img src={img1} className="sliderimg"/>
-                    <img src={img1} className="sliderimg"/>
-
-                </AliceCarousel>
-              </div> 
-              
-              <div className = "prop-det">{this.state.data.propertyDesc}</div>
-              {/* <div className = "imageprop">
-              {
-                this.state.data.selectedImages & this.state.data.selectedImages.forEach(per =>{
-                  return(
-                    <img src={per}></img>
-                  )
-                }) 
-              }
-
-              </div> */}
-          {/* </div> */}
-            
           </>
         )
     }
