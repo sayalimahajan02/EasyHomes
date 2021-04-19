@@ -12,53 +12,58 @@ class Filter extends Component {
         this.bathrooms = this.bathrooms.bind(this)
     }
 
-    componentWillMount() {
-        this.props.populateAction()
-    }
-
     cities() {
-        if (this.props.globalState.populateFormsData.cities != undefined) {
-            const { cities } = this.props.globalState.populateFormsData
 
-            return cities.map((listing) => {
+        let cities = this.props.listingsData.map((listing) => {
+            return listing['propertyCity']
+        })
+        var uniqueCities = Array.from(new Set(cities));
+        if (uniqueCities != undefined) {
+            return uniqueCities.map((city) => {
                 return (
-                    <option key={listing} value={listing}>{listing}</option>
+                    <option key={city} value={city}>{city}</option>
                 )
             })
         }
     }
 
     propertyTypes() {
-        if (this.props.globalState.populateFormsData.propertyTypes != undefined) {
-            const { propertyTypes } = this.props.globalState.populateFormsData
-
-            return propertyTypes.map((listing) => {
+        let propertyTypes = this.props.listingsData.map((listing) => {
+            return listing['propertyType']
+        })
+        var uniqueProperty = Array.from(new Set(propertyTypes));
+        if (uniqueProperty != undefined) {
+            return uniqueProperty.map((propertyType) => {
                 return (
-                    <option key={listing} value={listing}>{listing}</option>
+                    <option key={propertyType} value={propertyType}>{propertyType}</option>
                 )
             })
         }
     }
 
     bedrooms() {
-        if (this.props.globalState.populateFormsData.bedrooms != undefined) {
-            const { bedrooms } = this.props.globalState.populateFormsData
-
-            return bedrooms.map((listing) => {
+        let bed = this.props.listingsData.map((listing) => {
+            return listing['bed']
+        })
+        var uniqueBed = Array.from(new Set(bed));
+        if (uniqueBed != undefined) {
+            return uniqueBed.map((bed) => {
                 return (
-                    <option key={listing} value={listing}>{listing}+ BR</option>
+                    <option key={bed} value={bed}>{bed}+ BR</option>
                 )
             })
         }
     }
 
     bathrooms() {
-        if (this.props.globalState.populateFormsData.bathrooms != undefined) {
-            const { bathrooms } = this.props.globalState.populateFormsData
-
-            return bathrooms.map((listing) => {
+        let bath = this.props.listingsData.map((listing) => {
+            return listing['bath']
+        })
+        var uniqueBath = Array.from(new Set(bath));
+        if (uniqueBath != undefined) {
+            return uniqueBath.map((bath) => {
                 return (
-                    <option key={listing} value={listing}>{listing}+ BA</option>
+                    <option key={bath} value={bath}>{bath}+ BA</option>
                 )
             })
         }
@@ -81,22 +86,24 @@ class Filter extends Component {
                     </select>
                     <label htmlFor="bedrooms">Bedrooms</label>
                     <select name="bedrooms" className="filters number-of-bedrooms" onChange={this.props.change}>
+                        <option value="Select">Select</option>
                         {this.bedrooms()}
                     </select>
                     <label htmlFor="bathrooms">Bathrooms</label>
                     <select name="bathrooms" className="filters number-of-bathrooms" onChange={this.props.change}>
+                        <option value="Select">Select</option>
                         {this.bathrooms()}
                     </select>
 
                     <div className="filters floor-space">
                         <span className="title">Floor Space</span>
-                        <input type="text" name="min_floor_space" className="min-floor-space" onChange={this.props.change} value={this.props.globalState.min_floor_space} />
-                        <input type="text" name="max_floor_space" className="max-floor-space" onChange={this.props.change} value={this.props.globalState.max_floor_space} />
+                        <input type="text" name="min_floor_space" className="min-floor-space" onChange={this.props.change} value={this.state.min_floor_space} />
+                        <input type="text" name="max_floor_space" className="max-floor-space" onChange={this.props.change} value={this.state.max_floor_space} />
                     </div>
                     <div className="filters price">
                         <span className="title">Price</span>
-                        <input type="text" name="min_price" className="min-price" onChange={this.props.change} value={this.props.globalState.min_price} />
-                        <input type="text" name="max_price" className="max-price" onChange={this.props.change} value={this.props.globalState.max_price} />
+                        <input type="text" name="min_price" className="min-price" onChange={this.props.change} value={this.state.min_price} />
+                        <input type="text" name="max_price" className="max-price" onChange={this.props.change} value={this.state.max_price} />
                     </div>
 
                     <div className="filters extras">
@@ -114,6 +121,7 @@ class Filter extends Component {
                             <input name="finished_basement" value="finished_basement" type="checkbox" onChange={this.props.change} />
                         </label>
                     </div>
+                    <button type="button" onClick={this.props.filteredData}>Filter</button>
                 </div>
             </section>
         )
