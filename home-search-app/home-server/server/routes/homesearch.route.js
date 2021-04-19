@@ -45,5 +45,8 @@ router.route('/homeSearch/:id')
 
     .delete(homeSearchController.remove);
 
-
+    router.route('/homeSreachAggregation')
+    
+    .get(homeSearchController.aggregation)
+    
 export default router;

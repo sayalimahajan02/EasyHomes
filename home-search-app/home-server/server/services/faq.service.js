@@ -6,8 +6,8 @@ import Faq from '../models/faq';
  * @param search param.
  */
 const search = (param) => {
-    const promise = Faq.find(param).exec();
-    return promise;
+    const searchResult = Faq.find(param).exec();
+    return searchResult;
 };
 
 /**
@@ -21,7 +21,18 @@ const create = (newUser) => {
     return promise;
 }
 
+/**
+ * Deletes an existing order.
+ *
+ * @param userId
+ */
+const remove = (id) => {
+    const promise = Faq.remove({ _id: id }).exec();
+    return promise;
+}
+
 export default {
     search: search,
-    create:create
+    create:create,
+    remove: remove
 }

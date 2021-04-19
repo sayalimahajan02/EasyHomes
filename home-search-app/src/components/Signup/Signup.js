@@ -12,12 +12,14 @@ export default class Register extends React.Component {
     this.RegisterMethod = this.RegisterMethod.bind(this);
     this.onChangeOfEmail = this.onChangeOfEmail.bind(this);
     this.onChangeOfPassword = this.onChangeOfPassword.bind(this);
+    this.onChangeOfConfirmPassword = this.onChangeOfConfirmPassword.bind(this);
     this.responseErrorGoogle = this.responseErrorGoogle.bind(this);
     this.responseSuccessGoogle = this.responseSuccessGoogle.bind(this);
     // state for signup component
     this.state = {
       email: "",
       password: "",
+      confirmpassword: "",
       users: [],
       displayMessage: "",
       data:[]
@@ -31,8 +33,36 @@ export default class Register extends React.Component {
     this.setState({ password: e.target.value });
   }
 
+  onChangeOfConfirmPassword(e) {
+    this.setState({ confirmpassword: e.target.value });
+  }
+
   RegisterMethod(e) {
     e.preventDefault();
+    if(this.state.email.trim()=="" || this.state.password.trim()=="" )
+    {
+        alert('Please enter Email id and password properly');
+        return;
+      }
+
+    var mailformat =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if(!this.state.email.match(mailformat))
+      {
+        alert('Please enter valid Email format');
+        return;
+      }
+
+    if(this.state.confirmpassword.trim()=="")
+    {
+        alert('Please enter Confirm password');
+        return;
+    }
+    if(this.state.password.trim()!=this.state.confirmpassword.trim())
+    {
+      alert('Confirm password and password do not match, Please enter properly');
+      return;
+    }
+
     for (let i = 0; i < this.state.users.length; i++) {
       if (this.state.users[i].emailId === this.state.email) {
         this.setState({ displayMessage: 'User with this email address already registered' });
@@ -141,29 +171,36 @@ fetch(apiurl,{
       <div>
         <Form onSubmit={this.RegisterMethod}>
 
-          <label htmlFor="email">Email</label>
+          <label htmlFor="Email">Email</label>
           <Input
             type="text"
             className="form-control"
-            name="email"
+            name="Email"
             value={this.state.email}
             onChange={this.onChangeOfEmail}
-
+            
           /> {this.state.displayMessage}
           <br></br>
           <label htmlFor="password">Password</label>
           <Input
             type="password"
             className="form-control"
-            name="password"
+            name="Password"
             value={this.state.password}
             onChange={this.onChangeOfPassword}
+          />
+          <label htmlFor="Confirmpassword">Confirm Password</label>
+          <Input
+            type="password"
+            className="form-control"
+            name="Confirmpassword"
+            value={this.state.confirmpassword}
+            onChange={this.onChangeOfConfirmPassword}
           />
           <button>Signup</button>
         </Form>
 
-        ----------------OR-------------------
-        <br></br>
+        <br></br>------------------OR---------------------<br></br><br></br>
         <GoogleLogin
           clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
           buttonText="SignUp with Google"
