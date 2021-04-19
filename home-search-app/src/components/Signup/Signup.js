@@ -19,7 +19,8 @@ export default class Register extends React.Component {
       email: "",
       password: "",
       users: [],
-      displayMessage: ""
+      displayMessage: "",
+      data:[]
     };
   }
 
@@ -39,8 +40,33 @@ export default class Register extends React.Component {
       }
     }
     this.setState({ displayMessage: '' });
-    signupService.register(this.state.email, this.state.password).then(response => response.data.emailId);
-    return <Redirect to="/" />
+  
+    //actual post call
+    const tempArray=[];
+    const apiurl = "http://localhost:3000/records";
+    fetch(apiurl,{
+
+      method: 'POST',
+      
+      headers: {
+      
+      Accept: 'application/json',
+      
+      'Content-Type': 'application/json',
+      
+      },
+      
+      body: JSON.stringify({
+      
+      emailId : this.state.email,
+      password : this.state.password
+      
+      }) })
+      // localStorage.setItem('username','')
+      // localStorage.setItem('loggedIn',false);
+   alert("Congratulations !! Please signIn now")
+    this.props.history.push("/login");
+				window.location.reload();
   }
 
   //google starts
@@ -54,7 +80,35 @@ export default class Register extends React.Component {
       }
     }
     this.setState({ displayMessage: '' });
-    signupService.register(response.profileObj.email, response.tc.login_hint).then(response => response.data.emailId);
+    //signupService.register(response.profileObj.email, response.tc.login_hint)
+    
+
+//actual post call
+const tempArray=[];
+const apiurl = "http://localhost:3000/records";
+fetch(apiurl,{
+
+  method: 'POST',
+  
+  headers: {
+  
+  Accept: 'application/json',
+  'Cache-Control': 'no-cache',
+  'Content-Type': 'application/json',
+  
+  },
+  
+  body: JSON.stringify({
+  
+  emailId : response.profileObj.email, 
+  password : response.tc.login_hint
+  
+  }) })
+
+
+    alert("Congratulations !! Please signIn now usign google account")
+    this.props.history.push("/login");
+				window.location.reload();
 
   }
   responseErrorGoogle = (response) => {
@@ -85,7 +139,6 @@ export default class Register extends React.Component {
   render() {
     return (
       <div>
-        <Header />
         <Form onSubmit={this.RegisterMethod}>
 
           <label htmlFor="email">Email</label>
