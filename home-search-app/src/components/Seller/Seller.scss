@@ -1,6 +1,6 @@
 
 .formContainer {
-    background-color: #068a99f5;
+  background-image: linear-gradient(to bottom, rgba(233, 232, 158, 0.925), rgb(0, 157, 174));
     width: 34%;
     margin-left: auto;
     margin-right: auto;
@@ -8,6 +8,7 @@
     display: grid;
     float: right;
     border-style: inset;
+    box-shadow: 5px 2px 20px rgba(59, 59, 59, 0.75);
 }
 
 
@@ -16,7 +17,7 @@
     clear:left;
     text-align:right;
     padding-right:10px;
-    font-size: larger;
+    font-size: large;
     padding: 10px;
     
 }
@@ -25,9 +26,9 @@
     float:left;
 }
 .inputProperty {
-    padding: 10px;
-    border: 2px solid #068a998e;
-    border-radius: 15px;
+    padding: 8px;
+    border: 1px solid #068a998e;
+    border-radius: 5px;
     font-size: 20px;
     
 }
@@ -35,25 +36,32 @@
 .btnprop {
     margin-top: 5%;
     text-align: center;
-    padding: 5px;
+    padding: 10px;
     border: 2px solid #068a998e;
     width: 30%;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom: 5%;
     border-radius: 25px;
-    background-color: #0b0c0c8e;
-    color: aliceblue;
+    background-color: #ffffff;
+    color: #068a99;
+    font-weight: bold;
     
+}
+
+.btnprop:hover{
+  background-color: #068a99;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+
 }
 
 
 .bkImage{
   min-height: 100vh;
-  background-image: linear-gradient(to bottom, rgba(255,255,0,0.5), rgba(163, 187, 238, 0.425)), url(../images/sellerbackground.jpg);
+  background-color: white;
   background-repeat: no-repeat;
   background-size: cover;
-
-
 }
 
 #file[type = "file"] {
@@ -129,4 +137,12 @@ img{
 select {
   padding: 10px;
   border-radius: 25px;
+}
+
+
+.imgUpload{
+
+padding-left: 40%;
+margin-top: 15px;
+
 }
