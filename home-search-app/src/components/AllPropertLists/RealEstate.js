@@ -16,11 +16,13 @@ class RealEstate extends Component {
       search: '',
       city: "All",
       propertyType: "All",
-      bedrooms: "Select",
-      bathrooms: "Select",
+      bed: "Select",
+      bath: "Select",
       floorSpace: "0",
       price: "0",
-      extras: ""
+      extras: "",
+      min_floor_space: "",
+      max_floor_space: ""
     }
     this.change = this.change.bind(this)
     this.filteredData = this.filteredData.bind(this)
@@ -91,29 +93,30 @@ class RealEstate extends Component {
         })
         console.log('type', newData)
       }
-
+      console.log(this.state.bed)
       if (this.state.bed !== "Select") {
         newData = newData.filter((filterProperty) => {
           console.log('bed', newData)
-          return filterProperty.bed == this.state.bedrooms
+          return filterProperty.bed == this.state.bed
         })
       }
-
+      console.log(this.state.bath)
       if (this.state.bath !== "Select") {
+        console.log('bath', newData)
         newData = newData.filter((filterProperty) => {
-          console.log('bath', newData)
-          return filterProperty.bath == this.state.bathrooms
+
+          return filterProperty.bath == this.state.bath
         })
       }
 
-      // console.log(this.state.min_floor_space, this.state.max_floor_space)
-      // if (this.state.min_floor_space !== "" && this.state.max_floor_space !== "") {
-      //   console.log('floor', newData)
-      //   newData = newData.filter((filterProperty) => {
-
-      //     return this.state.min_floor_space <= filterProperty.propertySqftArea && filterProperty.propertySqftArea <= this.state.max_floor_space
-      //   })
-      // }
+      console.log(this.state.min_floor_space, this.state.max_floor_space)
+      if (this.state.min_floor_space !== "" && this.state.max_floor_space !== "") {
+        console.log('floor', newData)
+        newData = newData.filter((filterProperty) => {
+          return ((filterProperty.propertySqftArea >= this.state.min_floor_space) && (filterProperty.propertySqftArea <= this.state.max_floor_space))
+        })
+        console.log(newData)
+      }
 
       // if (this.state.min_price !== "" && this.state.min_price !== "") {
       //   newData = newData.filter((filterProperty) => {
