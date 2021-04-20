@@ -102,14 +102,18 @@ class Seller extends Component {
  getData() {
     console.log(this.state.imageurl);
     this.state.selectedImages.push(this.state.imageurl)
-    const tmpArray = [];
+    const {propertyId, propertyName, propertyDesc, propertyType, propertySqftArea, propertyPrice, propertyStreet, 
+        propertyCity, propertyState, propertyZipcode, propertyBuildDate, bed, bath, seller, buyer, selectedImages} = this.state;
+        console.log('selectedImages', selectedImages)
+        // selectedImages= selectedImages.pop();
     fetch('http://localhost:3000/homeSearch/',{
         method: 'POST',
         headers: {
             Accept: 'application/json',
                     'Content-Type': 'application/json',
         },
-        body: JSON.stringify(this.state)
+        body: JSON.stringify({propertyId, propertyName, propertyDesc, propertyType, propertySqftArea, propertyPrice, propertyStreet, 
+            propertyCity, propertyState, propertyZipcode, propertyBuildDate, bed, bath, seller, buyer, selectedImages})
     }).then(response => {
             console.log(response)
         })
@@ -124,6 +128,9 @@ handleFileInputChange = async e => {
     const files =e.target.files
     const data = new FormData()
     const resultUrls = []
+
+    
+    
     
     for (let i = 0; i < files.length; i++) {
         let file = files[i];
@@ -141,9 +148,14 @@ handleFileInputChange = async e => {
          ).then(response => response.json()) 
            .then(newData => {
               const url =newData.url;
-           this.setState({
-               imageurl : newData.url
-           })
+              if (url.length!= 0 && url!=="") {
+                this.setState({
+               
+                    selectedImages : [...this.state.selectedImages, url]
+                })
+              }
+          
+           console.log(i, url)
            })     
     }
  }
@@ -167,18 +179,6 @@ handleFileInputChange = async e => {
      this.setState({uploadImage:this.state.previewSource}) 
  }
 
- uploadImage = async (base64EncodedImage) => {
-     console.log(base64EncodedImage);
-     try {
-            await fetch('/api/upload', {
-            method: 'POST',
-            body: JSON.stringify({data: base64EncodedImage}),
-            headers: {'Content-type': 'application/json'}
-     })
-     } catch (error) {
-            console.error(error);
-     }
- };
 
 render() {
         return(
@@ -251,15 +251,21 @@ render() {
                
 
 
-                <input type= "file" name= "image" multiple onChange= {this.handleFileInputChange} />
+                <input className= "imgUpload" type= "file" name= "file" multiple onChange= {this.handleFileInputChange} />
                 <button onClick={this.handleSubmit} className="btnprop" type="submit">Add Property</button>
+               
+                
                 
                 </div>
                 </form>
 
-                {this.state.previewSource && (
-                    <img src={this.state.previewSource} alt="chosen" style= {{height: '300px'}} />
-                )}
+                {this.state.selectedImages && this.state.selectedImages.map((per )=> {
+                    return(
+                        <img  className="br" src={per} alt="chosen" style= {{height: '200px', width: '250px'}} />
+                    )
+                }) 
+            }      
+                
             </div>
         )
     }
