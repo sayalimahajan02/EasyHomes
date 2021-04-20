@@ -85,12 +85,12 @@ class Filter extends Component {
                         {this.propertyTypes()}
                     </select>
                     <label htmlFor="bedrooms">Bedrooms</label>
-                    <select name="bedrooms" className="filters number-of-bedrooms" onChange={this.props.change}>
+                    <select name="bed" className="filters number-of-bedrooms" onChange={this.props.change}>
                         <option value="Select">Select</option>
                         {this.bedrooms()}
                     </select>
                     <label htmlFor="bathrooms">Bathrooms</label>
-                    <select name="bathrooms" className="filters number-of-bathrooms" onChange={this.props.change}>
+                    <select name="bath" className="filters number-of-bathrooms" onChange={this.props.change}>
                         <option value="Select">Select</option>
                         {this.bathrooms()}
                     </select>

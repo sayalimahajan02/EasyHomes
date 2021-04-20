@@ -19,11 +19,14 @@ class Listings extends Component {
         }
         // box
         return listingsData.map((listing, index) => {
+            var divStyle = {
+                backgroundImage: `url(${listing.selectedImages[0]})`
+            }
             if (this.props.globalState.view === 'box') {
                 return (
                     <div className="col-md-3" key={index}>
                         <div className="listing">
-                            <div className="listing-img" style={{ background: `url("${listing.image}") no-repeat center center` }}>
+                            <div className="listing-img" style={divStyle}>
                                 <span className="address">{listing.address}</span>
                                 <div className="details" >
                                     <div className="col-md-3">
@@ -63,7 +66,7 @@ class Listings extends Component {
                                     pathname: `/propertyDetails`,
                                     state: { propertyId: listing._id }
                                 }}>
-                                    <button type="button" >View</button>
+                                    <button type="button" className="button-view">View</button>
                                 </Link>
                             </div>
 
@@ -75,7 +78,7 @@ class Listings extends Component {
                 return (
                     <div className="col-md-12 col-lg-6" key={index}>
                         <div className="listing">
-                            <div className="listing-img" style={{ background: `url("${listing.image}") no-repeat center center` }}>
+                            <div className="listing-img" style={divStyle}>
                                 <span className="address">{listing.propertyDesc}</span>
                                 <div className="details" >
                                     <div className="col-md-3">
