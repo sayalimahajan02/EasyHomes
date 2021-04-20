@@ -5,6 +5,7 @@ import signupService from '../../services/user.service';
 import { Redirect } from 'react-router-dom';
 import GoogleLogin from 'react-google-login';
 import Header from './../Header/Header';
+import './Signup.scss';
 
 export default class Register extends React.Component {
   constructor(props) {
@@ -22,7 +23,9 @@ export default class Register extends React.Component {
       confirmpassword: "",
       users: [],
       displayMessage: "",
-      data:[]
+      data: [],
+      signUpButton: "",
+      signInButton: ""
     };
   }
 
@@ -39,26 +42,22 @@ export default class Register extends React.Component {
 
   RegisterMethod(e) {
     e.preventDefault();
-    if(this.state.email.trim()=="" || this.state.password.trim()=="" )
-    {
-        alert('Please enter Email id and password properly');
-        return;
-      }
-
-    var mailformat =  /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-      if(!this.state.email.match(mailformat))
-      {
-        alert('Please enter valid Email format');
-        return;
-      }
-
-    if(this.state.confirmpassword.trim()=="")
-    {
-        alert('Please enter Confirm password');
-        return;
+    if (this.state.email.trim() == "" || this.state.password.trim() == "") {
+      alert('Please enter Email id and password properly');
+      return;
     }
-    if(this.state.password.trim()!=this.state.confirmpassword.trim())
-    {
+
+    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    if (!this.state.email.match(mailformat)) {
+      alert('Please enter valid Email format');
+      return;
+    }
+
+    if (this.state.confirmpassword.trim() == "") {
+      alert('Please enter Confirm password');
+      return;
+    }
+    if (this.state.password.trim() != this.state.confirmpassword.trim()) {
       alert('Confirm password and password do not match, Please enter properly');
       return;
     }
@@ -70,33 +69,34 @@ export default class Register extends React.Component {
       }
     }
     this.setState({ displayMessage: '' });
-  
+
     //actual post call
-    const tempArray=[];
+    const tempArray = [];
     const apiurl = "http://localhost:3000/records";
-    fetch(apiurl,{
+    fetch(apiurl, {
 
       method: 'POST',
-      
+
       headers: {
-      
-      Accept: 'application/json',
-      
-      'Content-Type': 'application/json',
-      
+
+        Accept: 'application/json',
+
+        'Content-Type': 'application/json',
+
       },
-      
+
       body: JSON.stringify({
-      
-      emailId : this.state.email,
-      password : this.state.password
-      
-      }) })
-      // localStorage.setItem('username','')
-      // localStorage.setItem('loggedIn',false);
-   alert("Congratulations !! Please signIn now")
+
+        emailId: this.state.email,
+        password: this.state.password
+
+      })
+    })
+    // localStorage.setItem('username','')
+    // localStorage.setItem('loggedIn',false);
+    alert("Congratulations !! Please signIn now")
     this.props.history.push("/login");
-				window.location.reload();
+    window.location.reload();
   }
 
   //google starts
@@ -111,34 +111,35 @@ export default class Register extends React.Component {
     }
     this.setState({ displayMessage: '' });
     //signupService.register(response.profileObj.email, response.tc.login_hint)
-    
 
-//actual post call
-const tempArray=[];
-const apiurl = "http://localhost:3000/records";
-fetch(apiurl,{
 
-  method: 'POST',
-  
-  headers: {
-  
-  Accept: 'application/json',
-  'Cache-Control': 'no-cache',
-  'Content-Type': 'application/json',
-  
-  },
-  
-  body: JSON.stringify({
-  
-  emailId : response.profileObj.email, 
-  password : response.tc.login_hint
-  
-  }) })
+    //actual post call
+    const tempArray = [];
+    const apiurl = "http://localhost:3000/records";
+    fetch(apiurl, {
+
+      method: 'POST',
+
+      headers: {
+
+        Accept: 'application/json',
+        'Cache-Control': 'no-cache',
+        'Content-Type': 'application/json',
+
+      },
+
+      body: JSON.stringify({
+
+        emailId: response.profileObj.email,
+        password: response.tc.login_hint
+
+      })
+    })
 
 
     alert("Congratulations !! Please signIn now usign google account")
     this.props.history.push("/login");
-				window.location.reload();
+    window.location.reload();
 
   }
   responseErrorGoogle = (response) => {
@@ -165,51 +166,53 @@ fetch(apiurl,{
       .catch(error => this.setState({ error }));
   }
 
+
+
   //google ends
   render() {
     return (
-      <div>
-        <Form onSubmit={this.RegisterMethod}>
+      <>
+        <div className="formOuter">
+          <div className="form-wrap">
+            <Form className="formEle" onSubmit={this.RegisterMethod}>
 
-          <label htmlFor="Email">Email</label>
-          <Input
-            type="text"
-            className="form-control"
-            name="Email"
-            value={this.state.email}
-            onChange={this.onChangeOfEmail}
-            
-          /> {this.state.displayMessage}
-          <br></br>
-          <label htmlFor="password">Password</label>
-          <Input
-            type="password"
-            className="form-control"
-            name="Password"
-            value={this.state.password}
-            onChange={this.onChangeOfPassword}
-          />
-          <label htmlFor="Confirmpassword">Confirm Password</label>
-          <Input
-            type="password"
-            className="form-control"
-            name="Confirmpassword"
-            value={this.state.confirmpassword}
-            onChange={this.onChangeOfConfirmPassword}
-          />
-          <button>Signup</button>
-        </Form>
+              <label className="lbl" >Email</label>
+              <Input
+                type="text"
+                className="form-control"
+                name="email"
+                value={this.state.email}
+                onChange={this.onChangeOfEmail}
 
-        <br></br>------------------OR---------------------<br></br><br></br>
-        <GoogleLogin
-          clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
-          buttonText="SignUp with Google"
-          onSuccess={this.responseSuccessGoogle}
-          onFailure={this.responseErrorGoogle}
-          cookiePolicy={'single_host_origin'}
-        />
+              /> {this.state.displayMessage}
 
-      </div>
+              <label>Password</label>
+              <Input
+                type="password"
+                className="form-control"
+                name="password"
+                value={this.state.password}
+                onChange={this.onChangeOfPassword}
+              />
+
+              <div className="btns">
+                <button className="btnSignup">Signup</button>
+                <br />
+
+                <GoogleLogin
+                  clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
+                  buttonText="SignUp with Google"
+                  onSuccess={this.responseSuccessGoogle}
+                  onFailure={this.responseErrorGoogle}
+                  cookiePolicy={'single_host_origin'}
+                />
+              </div>
+
+
+            </Form>
+          </div>
+        </div>
+      </>
     );
   }
 }
