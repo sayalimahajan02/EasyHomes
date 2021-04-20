@@ -15,7 +15,11 @@ export default class admin extends React.Component {
      
     }
     componentWillMount(){
-	this.getData();
+      if(localStorage.getItem('username')!='admin'){
+        alert('You do not have permission to view this page');
+        window.location.assign('/');
+        }
+	  this.getData();
     this.prepareDataForChart();
 }
 
@@ -58,8 +62,8 @@ getData(){
             {
 			tmpArray.push({property : response[i].propertyName ,
                  seller : response[i].seller.emailId.substring(0,response[i].seller.emailId.lastIndexOf('@'))
-                 //,buyer : JSON.parse(response[i].buyer).emailId.substring(0,JSON.parse(response[i].buyer).emailId.lastIndexOf('@')) 
-                 ,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
+                 ,buyer : JSON.parse(response[i].buyer).emailId.substring(0,JSON.parse(response[i].buyer).emailId.lastIndexOf('@')) 
+                 //,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
                 })
 		}
     }
@@ -93,6 +97,8 @@ getData(){
     const chartData = {
         labels : this.state.city,
         datasets : [{
+            borderWidth : 1,
+            space : 10,
             label : 'Population',
             data : this.state.count,
             backgroundColor : ['rgbs(123,231,232,1)',
@@ -141,6 +147,17 @@ getData(){
             legend:{
               display:true,
               position:'right'
+            },
+            scales :{
+              yAxes :[
+                {
+                  
+                  display:true,
+                  ticks :{
+                    suggestedMin :0
+                  }
+                }
+              ]
             }
           }}
         />
