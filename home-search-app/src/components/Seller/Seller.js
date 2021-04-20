@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './../Seller/Seller.scss';
-import axios from "axios";
+
 class Seller extends Component {
 
      constructor(props) {
@@ -10,6 +10,8 @@ class Seller extends Component {
         propertyName: '',
         propertyDesc: '',
         propertyType: '',
+        bed: '',
+        bath:'',
         propertySqftArea: '',
         propertyPrice: '',
         propertyStreet: '',
@@ -17,9 +19,14 @@ class Seller extends Component {
         propertyState: '',
         propertyZipcode: '',
         propertyBuildDate: '',
-        selectedImages: [],
+        image: '',
+        loading:'false',
+        previewSource: '',
+        imageurl:"",
+        selectedImages:[]
      }
  }
+
 
  handlepropertyIdChange = (event) => {
     this.setState({
@@ -43,6 +50,19 @@ class Seller extends Component {
         propertyType: event.target.value
         })
  }
+
+ handlepropertyBedChange = (event) => {
+    this.setState({
+        bed: event.target.value
+        })
+ }
+
+ handlepropertyBathChange = (event) => {
+    this.setState({
+        bath: event.target.value
+        })
+ }
+
  handlepropertySqftAreaChange = (event) => {
     this.setState({
         propertySqftArea: event.target.value
@@ -80,7 +100,8 @@ class Seller extends Component {
  }
 
  getData() {
-    
+    console.log(this.state.imageurl);
+    this.state.selectedImages.push(this.state.imageurl)
     const tmpArray = [];
     fetch('http://localhost:3000/homeSearch/',{
         method: 'POST',
@@ -97,48 +118,78 @@ class Seller extends Component {
         })
 }
 
- handleSubmit = (event) => {
+
+handleFileInputChange = async e => {
     
-     event.preventDefault()
-     this.getData();
+    const files =e.target.files
+    const data = new FormData()
+    const resultUrls = []
+    
+    for (let i = 0; i < files.length; i++) {
+        let file = files[i];
+        this.previewFile(file);
+        const formData = new FormData();
+        formData.append("file", file);
+        formData.append("upload_preset", "easy_homes");
+
+         fetch (
+            'https://api.cloudinary.com/v1_1/sm-entreperises/image/upload', 
+            {
+                method: 'Post',
+                body: formData
+            }
+         ).then(response => response.json()) 
+           .then(newData => {
+              const url =newData.url;
+           this.setState({
+               imageurl : newData.url
+           })
+           })     
+    }
  }
 
- handleImageChange = (e) => {
-    if (e.target.files) {
-        const filesArray = Array.from(e.target.files).map((file) => URL.createObjectURL(file));
-        this.setState({
-            
-            selectedImages:[...this.state.selectedImages,...filesArray]
+ previewFile = (file) => {
+    
+     const reader = new FileReader();
+     reader.readAsDataURL(file);
+     reader.onloadend = () => {
+         
+     this.setState({previewSource:reader.result})    
+     }
+ }
 
-        })
-        console.log(filesArray);
-        console.log(this.state.selectedImages);
+ handleSubmit = (event) => {
+     console.log('submitting')
+     event.preventDefault()
+     this.getData();
+     if (!this.state.previewSource) return;
+    
+     this.setState({uploadImage:this.state.previewSource}) 
+ }
 
-        Array.from(e.target.files).map(
-            (file) => URL.revokeObjectURL(file) 
-        );
-    }
-};
-
-renderPhotos = (source) => {
-    console.log('source: ', source);
-    return source.map((photo) => {
-        console.log("pic is: ",photo);
-        return <img src={photo} alt="" key={photo} />;
-        
-    });
-};
+ uploadImage = async (base64EncodedImage) => {
+     console.log(base64EncodedImage);
+     try {
+            await fetch('/api/upload', {
+            method: 'POST',
+            body: JSON.stringify({data: base64EncodedImage}),
+            headers: {'Content-type': 'application/json'}
+     })
+     } catch (error) {
+            console.error(error);
+     }
+ };
 
 render() {
         return(
             <div className = "bkImage">
-             <form onSubmit= {this.handleSubmit}>
+             <form onSubmit= {this.handleSubmit} className="form">
 
             <div className= "formContainer">
                 
                 <div className="lblContainer">
                     <label className="desc">Property Id :</label>
-                    <input className= "inputProperty" type='number' value= {this.state.propertyId} onChange = {this.handlepropertyIdChange}/>
+                    <input className= "inputProperty" type='number' min="0" value= {this.state.propertyId} onChange = {this.handlepropertyIdChange}/>
                 </div>
                 <div className="lblContainer">
                 <label className="desc">Name :</label>
@@ -150,8 +201,25 @@ render() {
                 </div>
                 <div className="lblContainer">
                 <label className="desc">Type :</label>
-                    <input className= "inputProperty" type='text' value= {this.state.propertyType} onChange = {this.handlepropertyTypeChange}/>
+                   <select value={this.state.value} onChange={this.handleChange}>
+                   <option value="None">None </option>   
+                   <option value="Appartment">Appartment </option>
+                   <option value="Condos">Condos</option>
+                   <option value="Home">Home</option>
+                   <option value="Studio">Studio</option>
+                   </select>
                 </div>
+                <div className="lblContainer">
+                    <label className="desc">Bed :</label>
+                    <input className= "inputProperty" type='number' min="0" value= {this.state.bed} onChange = {this.handlepropertyBedChange}/>
+                </div>
+                <div className="lblContainer">
+                    <label className="desc">Bath :</label>
+                    <input className= "inputProperty" type='number' min="0" value= {this.state.bath} onChange = {this.handlepropertyBathChange}/>
+                </div>
+
+
+
                 <div className="lblContainer">
                 <label className="desc">Area :</label>
                     <input className= "inputProperty" type='text' value= {this.state.propertySqftArea} onChange = {this.handlepropertySqftAreaChange}/>
@@ -180,28 +248,18 @@ render() {
                 <label className="desc">Build Date :</label>
                     <input className= "inputProperty" type='date' value= {this.state.propertyBuildDate} onChange = {this.handlepropertyBuildDateChange}/>
                 </div>
-                <label htmlFor="file" className="labelImg">
-                      <i className="material-icons">add_a_photo</i>
-                    </label>
-                
+               
+
+
+                <input type= "file" name= "image" multiple onChange= {this.handleFileInputChange} />
                 <button onClick={this.handleSubmit} className="btnprop" type="submit">Add Property</button>
                 
                 </div>
                 </form>
-                
 
-                <div className="imgUp">
-                    
-                    <input className= "inputImg" type = "file" multiple id="file"  onChange={this.handleImageChange}/>
-                    <div className = "label-holder">
-                    
-                    </div>
-
-                    <div className="result">
-                        {this.renderPhotos(this.state.selectedImages)}
-                    </div>
-
-                </div>
+                {this.state.previewSource && (
+                    <img src={this.state.previewSource} alt="chosen" style= {{height: '300px'}} />
+                )}
             </div>
         )
     }
