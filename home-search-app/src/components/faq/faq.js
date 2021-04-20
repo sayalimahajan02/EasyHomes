@@ -143,7 +143,10 @@ this.setState({
         <div>
             <div>
             <input type="text" className="input" placeholder="Search..." onChange={this.handleChange}/>
-            <button onClick={this.openNewFaq}>Add more FAQs</button>
+            <br></br><br></br>
+            {  localStorage.getItem('username')=="admin" 
+            ? <button onClick={this.openNewFaq}>Add more FAQs</button>
+            : null }
             {  this.state.showDiv  ? <div className="border-div">
             <label htmlFor="question">Question</label>
           <input
@@ -162,15 +165,17 @@ this.setState({
           />
           <br></br><br></br>
           <button onClick={this.addNewFaq}>Add new FAQ</button> 
-            </div> : null}
+            </div> : null }
             </div>
+            <br></br><p>Find answers to your questions here : </p>
             <div>
              
             <ul>
           {this.state.filtered.map(item => (
             <li key={item}>
     <p className="bold">{item.question} 
-    <button class="buttonClass" id={item._id} onClick={this.deleteFaq}>Delete</button></p>
+    {  localStorage.getItem('username')=="admin" ? 
+    <button class="buttonClass" id={item._id} onClick={this.deleteFaq}>Delete</button> : null } </p>
     <br></br>
       <p>{item.answer}</p>
       <br></br><br></br>

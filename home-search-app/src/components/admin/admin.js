@@ -57,8 +57,10 @@ getData(){
             if(response[i].seller && response[i].buyer)
             {
 			tmpArray.push({property : response[i].propertyName ,
-                 seller : response[i].seller.emailId.substring(0,response[i].seller.emailId.lastIndexOf('@')),
-                buyer : JSON.parse(response[i].buyer).emailId.substring(0,JSON.parse(response[i].buyer).emailId.lastIndexOf('@')) })
+                 seller : response[i].seller.emailId.substring(0,response[i].seller.emailId.lastIndexOf('@'))
+                 //,buyer : JSON.parse(response[i].buyer).emailId.substring(0,JSON.parse(response[i].buyer).emailId.lastIndexOf('@')) 
+                 ,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
+                })
 		}
     }
 	

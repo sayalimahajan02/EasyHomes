@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import './../Header/Header.scss';
 import ToggleDisplay from 'react-toggle-display';
@@ -19,6 +20,7 @@ logoutHandle(e){
   localStorage.clear();
   this.setState({loggedIn : false});
   this.setState({username : ''});
+  window.location.assign('/');
 }
 
 componentDidMount(){
@@ -32,8 +34,8 @@ componentDidMount(){
         <header>
           <nav className='left-nav'>
             <NavLink to='/aboutus'>About Us</NavLink>
-            <NavLink to='/property'>Buy</NavLink>
-            <NavLink to='/seller'>Sell</NavLink>
+            {(this.state.loggedIn!=null && this.state.loggedIn) ? <NavLink to='/property'>Buy</NavLink> : <NavLink to='/login'>Buy</NavLink> }
+            {(this.state.loggedIn!=null && this.state.loggedIn) ? <NavLink to='/Seller'>Sell</NavLink> : <NavLink to='/login'>Sell</NavLink> }
           </nav>
           <div className='logo'>
             <a href='/'><img src={Logo} className="homeLogo" />
