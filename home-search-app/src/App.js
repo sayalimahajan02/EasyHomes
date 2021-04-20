@@ -12,9 +12,15 @@ import Login from './components/Login/Login';
 
 import Signup from './components/Signup/Signup';
 
+import Seller from './components/Seller/Seller';
+
 import faq from './components/faq/faq';
 
-//import admin from './components/admin/admin';
+import aboutus from './components/Aboutus/aboutus'
+
+import admin from './components/admin/admin';
+
+import UserProfile from './components/UserProfile/userProfile';
 
 import RealEstate from './components/AllPropertLists/RealEstate';
 
@@ -46,17 +52,21 @@ function App() {
 
             <Route path="/signup" component={Signup} />
 
+            <Route path='/profile' component={UserProfile} />
+
             <Route path='/login' component={Login} />
 
             <Route path='/faq' component={faq} />
 
+            <Route path='/Seller' component={Seller} />
+
             <Route path='/property' component={RealEstate} />
 
-            {/* <Route path='/admin' component={admin} /> */}
+            <Route path='/admin' component={admin} />
 
             <Route exact path="/" render={() => (<Redirect to="./components/FrontPage/FrontPage" />)} />
 
-            {/* <Route path='/aboutus' component={Aboutus} /> */}
+            <Route path='/aboutus' component={aboutus} />
 
             <Route path='/propertyDetails' component={PropertyDetails} />
 

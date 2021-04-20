@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import './../Header/Header.scss';
 import ToggleDisplay from 'react-toggle-display';
