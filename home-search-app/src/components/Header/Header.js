@@ -34,8 +34,8 @@ componentDidMount(){
         <header>
           <nav className='left-nav'>
             <NavLink to='/aboutus'>About Us</NavLink>
-            {(this.state.loggedIn!=null && this.state.loggedIn) ? <NavLink to='/property'>Buy</NavLink> : <NavLink to='/login'>Buy</NavLink> }
-            {(this.state.loggedIn!=null && this.state.loggedIn) ? <NavLink to='/Seller'>Sell</NavLink> : <NavLink to='/login'>Sell</NavLink> }
+            { !this.state.username=='admin' ? (this.state.loggedIn!=null && this.state.loggedIn) ? <NavLink to='/property'>Buy</NavLink> : <NavLink to='/login'>Buy</NavLink> : null }
+            { !this.state.username=='admin' ? (this.state.loggedIn!=null && this.state.loggedIn) ? <NavLink to='/Seller'>Sell</NavLink> : <NavLink to='/login'>Sell</NavLink> : null }
           </nav>
           <div className='logo'>
             <a href='/'><img src={Logo} className="homeLogo" />
@@ -46,8 +46,10 @@ componentDidMount(){
           {!this.state.loggedIn ? null : <NavLink onClick={this.logoutHandle} to='/'>Logout</NavLink> }
           {!this.state.loggedIn ? <NavLink to='/signup'>SignUp</NavLink> : null}
             <NavLink to='/faq'>FAQs</NavLink>
-            {!this.state.loggedIn ? <NavLink to='/'> Guest </NavLink> : null}
-          {!this.state.loggedIn ? null : <NavLink to='/profile'>{this.state.username}</NavLink> }
+            {!this.state.loggedIn ? <NavLink to='/'> Guest </NavLink> 
+            : localStorage.getItem('username')=='admin' 
+            ? <NavLink to='/admin'> Admin </NavLink>  
+            :  <NavLink to='/profile'>{this.state.username}</NavLink> }
       
          
             </nav>
