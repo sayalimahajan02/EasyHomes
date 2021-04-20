@@ -89,6 +89,12 @@ componentWillUpdate(nexProps, nextState){
 	}
 	submitForm(e) {
 		e.preventDefault()
+		if(this.state.email.trim()=="" || this.state.password.trim()=="" )
+    {
+        alert('Please enter Email id and password properly');
+        return;
+      }
+	  
 		const { email, password } = this.state
 		for (let i = 0; i < this.state.data.length; i++) {
 			if (this.state.data[i].emailId === email && this.state.data[i].password === password) {
@@ -102,9 +108,15 @@ componentWillUpdate(nexProps, nextState){
 				localStorage.setItem('loggedIn',true);
 				localStorage.setItem('username',this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@")));
 				localStorage.setItem('user',JSON.stringify(this.state.data[i]));
+				if(this.state.email=='admin@admin.com' && this.state.password=='admin@1')
+				{
+				this.props.history.push("/admin");
+				window.location.reload();
+				}
+				else{
 				this.props.history.push("/");
 				window.location.reload();
-
+				}
 			}
 		}
 		this.setState({
@@ -124,18 +136,25 @@ componentWillUpdate(nexProps, nextState){
 					<form onSubmit={this.submitForm}>
 						<h2 className="text-center">Log in</h2>
 						<div className="form-group">
+							<br></br>
+							<label htmlFor="email">Email</label>
+							<br></br>
 							<input type="text" value={this.state.email} name="email" onChange={this.onChange} placeholder="Email" required="required" />
 							{this.state.displayMessage}
 						</div>
+						<br></br>
 						<div className="form-group">
+						<label htmlFor="password">Password</label>
+						<br></br>
 							<input type="password" name="password" value={this.state.password} onChange={this.onChange} placeholder="Password" required="required" />
 						</div>
+						<br></br><br></br>
 						<div>
 							<button type="submit">Log in</button>
 						</div>
 					</form>
 				</div>
-				<br></br><br></br>
+				<br></br>------------------OR---------------------<br></br><br></br>
 				<GoogleLogin
 					clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
 					buttonText="SignIn with Google"

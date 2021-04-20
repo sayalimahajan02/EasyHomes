@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 class Listings extends Component {
     constructor() {
@@ -18,21 +19,20 @@ class Listings extends Component {
         }
         // box
         return listingsData.map((listing, index) => {
-            console.log(listing.propertyDesc)
             if (this.props.globalState.view === 'box') {
                 return (
                     <div className="col-md-3" key={index}>
                         <div className="listing">
                             <div className="listing-img" style={{ background: `url("${listing.image}") no-repeat center center` }}>
                                 <span className="address">{listing.address}</span>
-                                <div className="details">
+                                <div className="details" >
                                     <div className="col-md-3">
                                         <div className="user-img"> </div>
                                     </div>
 
                                     <div className="col-md-9">
                                         <div className="user-details">
-                                            <span className="user-name">Lucci Kinder</span>
+                                            <span className="user-name">Ajay</span>
                                             <span className="post-date">08/21/19</span>
                                         </div>
                                         <div className="listing-details">
@@ -58,6 +58,13 @@ class Listings extends Component {
                             <div className="bottom-info">
                                 <span className="price">${listing.propertyPrice}</span>
                                 <span className="location"><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.propertyCity}, {listing.propertyState}</span>
+                                {/* <Link to="/propertDetails/" params={{ propertyId: listing.propertyCity }}> */}
+                                <Link to={{
+                                    pathname: `/propertyDetails`,
+                                    state: { propertyId: listing._id }
+                                }}>
+                                    <button type="button" >View</button>
+                                </Link>
                             </div>
 
                         </div>
@@ -70,14 +77,14 @@ class Listings extends Component {
                         <div className="listing">
                             <div className="listing-img" style={{ background: `url("${listing.image}") no-repeat center center` }}>
                                 <span className="address">{listing.propertyDesc}</span>
-                                <div className="details">
+                                <div className="details" >
                                     <div className="col-md-3">
                                         <div className="user-img"> </div>
                                     </div>
 
                                     <div className="col-md-9">
                                         <div className="user-details">
-                                            <span className="user-name">Lucci Kinder</span>
+                                            <span className="user-name">Ajay</span>
                                             <span className="post-date">08/21/19</span>
                                         </div>
                                         <div className="listing-details">
@@ -103,6 +110,13 @@ class Listings extends Component {
                             <div className="bottom-info">
                                 <span className="price">${listing.propertyPrice}</span>
                                 <span className="location"><i className="fa fa-map-marker" aria-hidden="true"></i> {listing.propertyCity}, {listing.propertyState}</span>
+                                {/* <Link to="/propertyDetails/" params={{ propertyId: listing._id }}> */}
+                                <Link to={{
+                                    pathname: `/propertyDetails`,
+                                    state: { propertyId: listing._id }
+                                }}>
+                                    <button type="button" >View</button>
+                                </Link>
                             </div>
 
                         </div>
@@ -117,10 +131,10 @@ class Listings extends Component {
         return (
             <section id="listings">
 
-                <section className="search-area">
-                    <input type="text" name="search" onChange={this.props.change} />
-                    <i className="fa fa-search" aria-hidden="true"></i>
-                </section>
+                {/* <section className="search-area">
+          <input type="text" name="search" onChange={this.props.change} />
+          <i className="fa fa-search" aria-hidden="true"></i>
+        </section> */}
 
                 <section className="sortby-area">
                     <div className="results">{this.props.globalState.filteredData.length} results found</div>

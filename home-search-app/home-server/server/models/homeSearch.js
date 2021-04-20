@@ -44,7 +44,13 @@ const PropertySchema = new mongoose.Schema(
         },
         selectedImages: {
             type: Array
+        },bed:{
+
+            type: Number
         },
+        bath:{    
+            type: Number
+            },
     },
     {
         versionKey: false
