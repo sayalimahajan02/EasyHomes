@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import propertyDetails from '../propertyDetails/propertyDetails';
 import Filter from './Filter'
 import Listings from './Listings'
-//import listingsData from './listingsData'
 import './sass/main.scss';
 
 class RealEstate extends Component {

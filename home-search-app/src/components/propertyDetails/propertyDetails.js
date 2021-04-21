@@ -1,7 +1,6 @@
 import React from 'react';
 import './propertyDetails.scss';
-// import img1 from '../images/property.jpeg';
-import "react-alice-carousel/lib/scss/alice-carousel.scss";
+import { Link } from 'react-router-dom';
 
 
 class propertyDetails extends React.Component {
@@ -26,22 +25,27 @@ class propertyDetails extends React.Component {
       data: [],
       temp: [],
       disableBtn: false,
-      btnName: "Start an Offer"
+      btnName: "Start an Offer",
+      proceedBtn: false
     }
     this.handleChange = this.handleChange.bind(this);
     this.addToBuyer = this.addToBuyer.bind(this);
   }
 
+  componentDidMount() {
+    this.loadSellerDetails()
+    this.getData()
+  }
 
+  loadSellerDetails() {
+    const temp = JSON.parse(localStorage.getItem('user'))
+    this.setState({
+      seller: temp
+    })
+  }
   //to set state
   handleChange = (event, field) => {
     this.setState({ [field]: event.target.value })
-  }
-
-  //when page loads
-  componentWillMount() {
-    this.getData();
-
   }
 
   addToBuyer() {
@@ -88,6 +92,10 @@ class propertyDetails extends React.Component {
       .catch(error => {
         console.log("error:" + error)
       });
+
+
+    //gtet contact
+
   }
 
   //put data
@@ -164,10 +172,16 @@ class propertyDetails extends React.Component {
                 <label>Email</label>
                 <input id="email" value={this.state && this.state.data && this.state.data.seller.emailId} disabled></input>
                 <label>Contact</label>
-                <input id="contact" value={this.state && this.state.desc} disabled></input>
+                <input id="contact" value={this.state.seller.contact} disabled></input>
               </div>
             </div> : null}
-            <div className="offer-btn-class"><button disabled={this.state && this.state.disableBtn} className="offer-btn" onClick={this.addToBuyer}>{this.state.btnName}</button></div>
+            <div className="offer-btn-class">
+              <Link to="/payment">
+                <button disabled={this.state && this.state.disableBtn} className="offer-btn" onClick={this.addToBuyer}>{this.state.btnName}</button>
+              </Link>
+            </div>
+          </div>
+          <div>
           </div>
         </div>
 

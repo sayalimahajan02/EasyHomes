@@ -88,8 +88,8 @@ export default class Register extends React.Component {
       body: JSON.stringify({
 
         emailId: this.state.email,
-        password: this.state.password
-
+        password: this.state.password,
+        contact: ""
       })
     })
     // localStorage.setItem('username','')
@@ -193,6 +193,15 @@ export default class Register extends React.Component {
                 name="password"
                 value={this.state.password}
                 onChange={this.onChangeOfPassword}
+              />
+
+              <label>Confirm Password</label>
+              <Input
+                type="password"
+                className="form-control"
+                name="Confirmpassword"
+                value={this.state.confirmpassword}
+                onChange={this.onChangeOfConfirmPassword}
               />
 
               <div className="btns">

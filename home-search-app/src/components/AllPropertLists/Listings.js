@@ -5,7 +5,7 @@ class Listings extends Component {
     constructor() {
         super()
         this.state = {
-            name: 'Joe'
+            emailId: ""
         }
         this.loopListings = this.loopListings.bind(this)
     }
@@ -27,7 +27,7 @@ class Listings extends Component {
                     <div className="col-md-3" key={index}>
                         <div className="listing">
                             <div className="listing-img" style={divStyle}>
-                                <span className="address">{listing.address}</span>
+                                <span className="address">{listing.propertyName}</span>
                                 <div className="details" >
                                     <div className="col-md-3">
                                         <div className="user-img"> </div>
@@ -35,8 +35,8 @@ class Listings extends Component {
 
                                     <div className="col-md-9">
                                         <div className="user-details">
-                                            <span className="user-name">Ajay</span>
-                                            <span className="post-date">08/21/19</span>
+                                            <span className="user-name">{listing.seller.emailId.substring(0, listing.seller.emailId.lastIndexOf('@'))}</span>
+                                            <span className="post-date">{listing.propertyBuildDate}</span>
                                         </div>
                                         <div className="listing-details">
                                             <div className="floor-space">
@@ -79,7 +79,7 @@ class Listings extends Component {
                     <div className="col-md-12 col-lg-6" key={index}>
                         <div className="listing">
                             <div className="listing-img" style={divStyle}>
-                                <span className="address">{listing.propertyDesc}</span>
+                                <span className="address">{listing.propertyName}</span>
                                 <div className="details" >
                                     <div className="col-md-3">
                                         <div className="user-img"> </div>
@@ -87,8 +87,8 @@ class Listings extends Component {
 
                                     <div className="col-md-9">
                                         <div className="user-details">
-                                            <span className="user-name">Ajay</span>
-                                            <span className="post-date">08/21/19</span>
+                                            <span className="user-name">{listing.seller.emailId.substring(0, listing.seller.emailId.lastIndexOf('@'))}</span>
+                                            <span className="post-date">{listing.propertyBuildDate}</span>
                                         </div>
                                         <div className="listing-details">
                                             <div className="floor-space">
