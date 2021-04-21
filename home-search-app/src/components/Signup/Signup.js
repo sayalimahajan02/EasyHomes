@@ -29,17 +29,22 @@ export default class Register extends React.Component {
     };
   }
 
+  //handle change
   onChangeOfEmail(e) {
     this.setState({ email: e.target.value });
   }
+
+  //handle change
   onChangeOfPassword(e) {
     this.setState({ password: e.target.value });
   }
 
+  //handle change
   onChangeOfConfirmPassword(e) {
     this.setState({ confirmpassword: e.target.value });
   }
 
+  //register method
   RegisterMethod(e) {
     e.preventDefault();
     if (this.state.email.trim() == "" || this.state.password.trim() == "") {

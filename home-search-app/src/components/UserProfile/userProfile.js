@@ -35,7 +35,7 @@ class userProfile extends React.Component {
         })
     }
 
-
+//check user details
     loadUserDetails() {
         const temp = JSON.parse(localStorage.getItem('user'))
         this.setState({
@@ -54,7 +54,8 @@ class userProfile extends React.Component {
         this.loadUserDetails();
         this.getData();
     }
-
+    
+//update contact details
     updateContact() {
         const contact = this.state.contactNum
         const pattern = new RegExp("[0-9]{3}-[0-9]{3}-[0-9]{4}")

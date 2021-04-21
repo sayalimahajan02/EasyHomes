@@ -17,6 +17,8 @@ export default class admin extends React.Component {
     this.prepareDataForChart = this.prepareDataForChart.bind(this);
 
   }
+  
+  
   componentWillMount() {
     if (localStorage.getItem('username') != 'admin') {
       alert('You do not have permission to view this page');
@@ -26,6 +28,7 @@ export default class admin extends React.Component {
     this.prepareDataForChart();
   }
 
+  //data for chart
   prepareDataForChart() {
     const tmpArray = [];
     fetch('http://localhost:3000/homeSreachAggregation', {

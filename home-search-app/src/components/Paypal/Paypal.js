@@ -8,6 +8,8 @@ class Paypal extends React.Component {
   constructor(props){
     super(props);
   }
+
+  //check session
   componentWillMount(){
     if(localStorage.getItem('username')==null || localStorage.getItem('username')=='admin'){
       alert('You do not have permission to view this page. Please login with proper user');

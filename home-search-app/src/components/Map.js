@@ -36,7 +36,7 @@ class Map extends React.Component{
          area = this.getArea( addressArray ),
          state = this.getState( addressArray );
       
-        console.log( 'city', city, area, state );
+        // console.log( 'city', city, area, state );
       
         this.setState( {
          address: ( address ) ? address : '',
@@ -171,7 +171,7 @@ class Map extends React.Component{
       * @param event
       */
      onMarkerDragEnd = ( event ) => {
-      console.log( 'event', event );
+      // console.log( 'event', event );
       let newLat = event.latLng.lat(),
        newLng = event.latLng.lng(),
        addressArray = [];

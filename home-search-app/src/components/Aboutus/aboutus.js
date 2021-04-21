@@ -6,6 +6,7 @@ export default class aboutus extends React.Component {
     super(props)
   }
 
+  //about us
   render() {
     return (
       <div>
