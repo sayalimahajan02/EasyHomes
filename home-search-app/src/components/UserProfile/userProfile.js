@@ -111,9 +111,9 @@ class userProfile extends React.Component {
 
 
     //put data
-    putData(cont) {
+    async putData(cont) {
         const apiUrl = 'http://localhost:3000/records/' + this.state.id;
-        fetch(apiUrl, {
+        await fetch(apiUrl, {
             method: 'PUT',
             headers: {
                 Accept: 'application/json',
