@@ -61,7 +61,14 @@ class Login extends React.Component {
         // sessionStorage.setItem('userID',value.id);
         localStorage.setItem('loggedIn', true);
         localStorage.setItem('username', this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@")));
-        localStorage.setItem('user', JSON.stringify(this.state.data[i]));
+        const updatedUser = JSON.stringify({
+          _id:this.state.data[i]._id,
+          emailId:this.state.data[i].emailId,
+          password:"**********",
+          contact : this.state.data[i].contact,
+          id:this.state.data[i].id
+        })
+        localStorage.setItem('user', updatedUser);
         //let userProfObj=JSON.parse(localStorage.getItem('user'));
         this.props.history.push("/");
         window.location.reload();
@@ -105,7 +112,14 @@ class Login extends React.Component {
 
         localStorage.setItem('loggedIn', true);
         localStorage.setItem('username', this.state.data[i].emailId.substring(0, this.state.data[i].emailId.lastIndexOf("@")));
-        localStorage.setItem('user', JSON.stringify(this.state.data[i]));
+        const updatedUser = JSON.stringify({
+          _id:this.state.data[i]._id,
+          emailId:this.state.data[i].emailId,
+          password:"**********",
+          contact : this.state.data[i].contact,
+          id:this.state.data[i].id
+        })
+        localStorage.setItem('user', updatedUser);
         if (this.state.email == 'admin@admin.com' && this.state.password == 'admin@1') {
           this.props.history.push("/admin");
           window.location.reload();
@@ -145,7 +159,7 @@ class Login extends React.Component {
             </div>
             <div className="btnsli">
               <button className="btnLogin" type="submit">Log in</button>
-              <GoogleLogin
+              <GoogleLogin className="btnLogin"
                 clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
                 buttonText="SignIn with Google"
                 onSuccess={this.responseSuccessGoogle}

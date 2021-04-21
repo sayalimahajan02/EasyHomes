@@ -29,6 +29,10 @@ class RealEstate extends Component {
   }
 
   componentDidMount() {
+    if(localStorage.getItem('username')==null || localStorage.getItem('username')=='admin'){
+      alert('You do not have permission to view this page. Please login with proper user');
+      window.location.assign('/');
+    }
     this.getData();
     const listingsData = this.state.listingsData.sort((a, b) => {
       return a.price - b.price

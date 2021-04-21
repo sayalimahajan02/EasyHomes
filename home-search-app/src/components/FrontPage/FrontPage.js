@@ -39,11 +39,17 @@ class FrontPage extends React.Component {
             </header>
             <div className='front-page-tabs'>
               <ul>
-                <li className='active'>
-                  <a href='/property'>Buy</a>
+              <li className='active'>
+                  {localStorage.getItem('username')!=null ? 
+                  localStorage.getItem('username')!='admin' ? <a href='/property'>Buy</a> 
+                  : <a href='/'>Buy</a> 
+                  : <a href='/login'>Buy</a> }
                 </li>
                 <li className=''>
-                  <a href='/seller'>Sell</a>
+                {localStorage.getItem('username')!=null ? 
+                localStorage.getItem('username')!='admin' ? <a href='/seller'>Sell</a> 
+                : <a href='/'>Sell</a> 
+                : <a href='/login'>Sell</a> }
                 </li>
               </ul>
             </div>
