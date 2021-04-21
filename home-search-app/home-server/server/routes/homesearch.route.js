@@ -1,27 +1,45 @@
 import express from 'express';
-// import todoController from '../controllers/todo.controller';
 
 const router = express.Router();
 
-//express framework for developing the endpoints.
+import homeSearchController from "../controllers/homeSearch.controller";
 
-/** URLs
- * Search all the tasks - GET /todo
- * Create task - POST /todo
- */
+//express framework
 
-//  router.route('/todo')
-//  .get(todoController.index)
-//  .post(todoController.save);
+/**
 
-/** URLs
-* Retrieve task by id - GET /todo/${id}
-* Update task by id - PUT /todo/${id}
-* Delete task by id - DELETE /todo/${id}
+* Search - GET /users
+
+* Create - POST /records
+
 */
-// router.route('/todo/:id')
-//  .get(todoController.get)
-//  .put(todoController.update)
-//  .delete(todoController.remove);
 
+router.route('/homeSearch')
+
+    .get(homeSearchController.index)
+
+    .post(homeSearchController.create);
+
+/**
+
+* Retrieve - GET /users/${id}
+
+* Update - PUT /users/${id}
+
+* Delete - DELETE /users/${id}
+
+*/
+
+router.route('/homeSearch/:id')
+
+    .get(homeSearchController.get)
+
+    .put(homeSearchController.update)
+
+    .delete(homeSearchController.remove);
+
+    router.route('/homeSreachAggregation')
+    
+    .get(homeSearchController.aggregation)
+    
 export default router;

@@ -1,0 +1,160 @@
+.footServ
+{
+    width: 250px;
+    text-align: left;
+    margin: 25px;
+}
+.footCntct
+{
+    width: 250px; 
+    text-align: left; 
+    margin: 25px;
+}
+.footQview
+{
+    width: 250px;
+    text-align: left;
+    margin: 25px 10px;
+}
+
+
+.footQview b{
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.footCntct b{
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.footServ b{
+    font-weight: bolder;
+    font-size: 16px;
+}
+
+.footClnNw
+{
+    width:300px; 
+    margin: 20px 0px;
+}
+
+.footClnNw b
+{
+    color:#ffffff;
+    font-size: 30px;
+    margin: 20px 0px;
+    font-weight: bolder;
+}
+
+
+
+.ftQV
+{
+    list-style-type: none; 
+    padding:20px 0px;
+    color: #404040;
+    font-size: 14px;
+}
+
+.ftSL 
+{
+    list-style-type:none;
+    padding:20px 0px;
+    color: #404040;
+    font-size: 14px; 
+}
+
+.footClnNw p
+{
+    color: #404040;
+    font-size: 14px;
+    margin: 20px 10px 20px 0px ;
+}
+
+.footCntct p, b
+{
+    color: #404040;
+    font-size: 14px;
+}
+
+.ftr 
+{
+    padding-top: 20px;
+    text-align:left ; 
+    width: 100%; 
+    background-color: rgba(0, 157, 174, 0.514);
+    line-height: 25px;
+    height:340px;
+}
+
+.ftrbody {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 14px;
+}
+
+.copyRights{
+    display: flex;
+    float: left;
+}
+
+.lastLine li
+{
+    display:inline-flex;
+    padding:10px;
+    border-left: 1px solid #d3d3d3;
+    margin-top: 6px;
+    height:12px;
+}
+
+.ftrtail {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:20px;
+    margin-bottom:80px;
+    border-top: 1px solid rgb(255, 255, 255);
+
+}
+
+.footerImg{
+    margin:15px;
+}
+
+.facebook {
+    margin:15px 4px;
+}
+
+.twitter {
+    margin:15px 4px;
+}
+
+
+.instagram{
+    margin:15px 4px;
+}
+
+
+.socialTags{
+    float:right;
+    display:flex;
+}
+
+.lang{
+    margin:15px 20px 15px 0px;
+}
+
+.leftCR{
+ float: left;
+ display: inline-flex;
+}
+
+.rightCR{
+ float:right;
+ display: inline-flex;
+}

@@ -1,0 +1,134 @@
+
+.formContainer {
+  background-image: linear-gradient(to bottom, rgba(233, 232, 158, 0.925), rgb(0, 157, 174));
+    width: 34%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px 10px 0px 10px;
+    display: grid;
+    float: right;
+    border-style: inset;
+    box-shadow: 5px 2px 20px rgba(59, 59, 59, 0.75);
+    margin-top: 1%;
+}
+
+
+.desc {
+    width:180px;
+    clear:left;
+    text-align:right;
+    padding-right:10px;
+    font-size: large;
+    padding: 10px;
+    
+}
+
+.inputProperty, .desc {
+    float:left;
+}
+.inputProperty {
+    padding: 8px;
+    border: 1px solid #068a998e;
+    border-radius: 5px;
+    font-size: 20px;
+    
+}
+
+.btnprop {
+    margin-top: 5%;
+    text-align: center;
+    padding: 10px;
+    border: 2px solid #068a998e;
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5%;
+    border-radius: 25px;
+    background-color: #ffffff;
+    color: #068a99;
+    font-weight: bold;
+    
+}
+
+.btnprop:hover{
+  background-color: #068a99;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+
+}
+
+
+.bkImage{
+  min-height: 100vh;
+  background-color: white;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#file[type = "file"] {
+	display: none;
+}
+
+
+.label-holder {
+  width: 100%;
+  height: 50px;
+  margin-top: 3em;
+  display: grid;
+  place-items: center;
+}
+
+.result{
+  min-height: auto;
+  width: 86%;
+  margin-top:1rem ;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: left; 
+  border-style: inset;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #068a99f5;
+  
+}
+
+img{
+  width: 320px;
+  height: 180px;
+  object-fit: cover;
+  padding: 0.75rem;
+  
+}
+
+.imgUp {
+  display: grid;
+  width: 64%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.btnImg {
+  width: 10%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2%;
+}
+
+.lblContainer {
+  width: 100%;
+  margin-bottom: 1%;
+}
+
+select {
+  padding: 10px;
+  border-radius: 25px;
+}
+
+
+.imgUpload{
+
+padding-left: 40%;
+margin-top: 15px;
+
+}

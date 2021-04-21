@@ -1,0 +1,107 @@
+.prop-container {
+  width: 70%;
+  display: flex;
+  margin: 4% auto;
+  background-color: rgb(245, 245, 245);
+  padding: 30px;
+}
+
+.propName {
+  font-size: 26px;
+  font-weight: bolder;
+  padding: 10px 0px;
+  color: rgb(0, 157, 174);
+}
+
+.rowone {
+  width: 50%;
+  padding: 5px;
+}
+
+.rowtwo {
+  width: 50%;
+  padding: 5px;
+}
+
+.sliderimg {
+  width: 100%;
+  height: 400px;
+}
+
+.column1 {
+  font-size: 18px;
+  color: grey;
+  line-height: 40px;
+}
+
+.prop-price {
+  font-size: 24px;
+  color: rgb(255, 123, 0);
+}
+
+.propAmen {
+  display: flex;
+  border: 1px solid grey;
+  padding: 30px;
+  margin: 20px 0px;
+  width: 400px;
+}
+
+.sample-box {
+  display: inline-table;
+  gap: 5px;
+}
+
+#proptype {
+  border: 1px solid grey;
+  background-color: rgba(0, 157, 174, 0.24);
+  margin: 10px 10px 10px 10px;
+  padding: 12px;
+  width: 300px;
+}
+
+#propdate {
+  border: 1px solid grey;
+  background-color: rgba(0, 157, 174, 0.24);
+  margin: 10px;
+  padding: 12px;
+  width: 300px;
+}
+
+.contact-seller-btn {
+  background-color: rgb(0, 157, 174);
+  padding: 15px;
+  border-top: rgb(2, 90, 100);
+  width: auto;
+  border-radius: 5px;
+  color: #fff;
+  font-weight: bold;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+.offer-btn {
+  background-color: rgb(187, 187, 187);
+  padding: 15px;
+  border-top: rgb(2, 90, 100);
+  width: auto;
+  border-radius: 5px;
+  color: rgb(97, 97, 97);
+  font-weight: bold;
+  margin: 10px 0px;
+  cursor: pointer;
+}
+
+#email {
+  margin: 10px;
+  padding: 20px;
+  height: 30px;
+  width: 170px;
+}
+
+#contact {
+  margin: 10px;
+  padding: 20px;
+  height: 30px;
+  width: 170px;
+}

@@ -1,0 +1,59 @@
+
+
+.formOuter{
+  width:100%;
+  margin:3% 0%;
+  background-size: cover;
+  background-image: url('https://miro.medium.com/max/10366/1*fWJwhmCFl5vrTqboSW5p3w.jpeg');
+}
+
+.form-wrap{
+ 
+  background-image: linear-gradient(to bottom, rgba(233, 232, 158, 0.925), rgb(0, 157, 174));
+  width: 40%;
+  height:auto;
+  border: 1px solid rgb(0, 157, 174);
+  margin-left: auto;
+  margin-right: auto;
+  padding:10%;
+  color:rgb(51, 51, 51);
+  text-align: left;
+  box-shadow: 5px 2px 20px rgba(59, 59, 59, 0.75);
+
+}
+
+.form-control{
+  padding: 15px;
+  width:300px;
+  margin: 10px 0px;
+}
+
+.btnSignup{
+
+  padding:12px;
+  background: white;
+  border: 2px solid rgb(0, 157, 174);
+  border-radius: 3px;
+  width:184px;
+  margin: 12px 0px;
+  color:rgb(0, 157, 174);
+  font-size: 15px;
+  font-weight: bold;
+
+}
+
+.formEle{
+ 
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
+
+.btns{
+
+  width:60%;
+  margin-left: auto;
+  margin-right: auto;
+
+}
