@@ -1,6 +1,8 @@
 import React from "react";
 import { Bar } from 'react-chartjs-2';
-import {Doughnut} from 'react-chartjs-2';
+import { Doughnut } from 'react-chartjs-2';
+import './admin.scss';
+
 export default class admin extends React.Component {
   constructor(props) {
     super(props);
@@ -8,7 +10,7 @@ export default class admin extends React.Component {
       properties: [],
       city: [],
       count: [],
-      soldPropCount : 0
+      soldPropCount: 0
 
     }
     this.getData = this.getData.bind(this);
@@ -58,29 +60,29 @@ export default class admin extends React.Component {
     })
       .then(response => response.json())
       .then(response => {
-        for (var i = 0; i < response.length; i++) {
-          if(response[i].seller)
-          {
-              this.setState({
-                tmpsell : response[i].seller.emailId.substring(0,response[i].seller.emailId.lastIndexOf('@'))
-              })
-          }
-          if(response[i].buyer){
+        for (let i = 0; i < response.length; i++) {
+          if (response[i].seller) {
             this.setState({
-              tempbuy : JSON.parse(response[i].buyer).emailId.substring(0,JSON.parse(response[i].buyer).emailId.lastIndexOf('@')) 
-              ,soldPropCount :this.state.soldPropCount+1
+              tmpsell: response[i].seller.emailId.substring(0, response[i].seller.emailId.lastIndexOf('@'))
+            })
+          }
+          if (response[i].buyer) {
+            this.setState({
+              tempbuy: JSON.parse(response[i].buyer).emailId.substring(0, JSON.parse(response[i].buyer).emailId.lastIndexOf('@'))
+              , soldPropCount: this.state.soldPropCount + 1
+            })
+          }
+          else {
+            this.setState({
+              tempbuy: ''
+            })
+          }
+          tmpArray.push({
+            property: response[i].propertyName,
+            seller: this.state.tmpsell
+            , buyer: this.state.tempbuy
+            //,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
           })
-        }
-        else{
-          this.setState({
-            tempbuy :''
-          })
-        }
-          tmpArray.push({property : response[i].propertyName ,
-                     seller : this.state.tmpsell
-                     ,buyer : this.state. tempbuy
-                     //,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
-                    })
         }
 
         this.setState({
@@ -107,57 +109,34 @@ export default class admin extends React.Component {
           'rgbs(232,123,231,1)',
           'rgbs(231,232,123,1)'
         ]
-
       }],
-
     }
 
     //for pie 
 
-    const soldPercentage=(100* this.state.soldPropCount)/(this.state.properties.length);
-    const options={
+    const soldPercentage = (100 * this.state.soldPropCount) / (this.state.properties.length);
+    const options = {
       labels: [
         'Property Sold',
         'Property Not Sold'
       ],
       datasets: [{
         data: [
-          soldPercentage, (100-soldPercentage)],
+          soldPercentage, (100 - soldPercentage)],
         backgroundColor: [
-        '#FF6384',
-        '#36A2EB'
+          '#FF6384',
+          '#36A2EB'
         ],
         hoverBackgroundColor: [
-        '#FF6384',
-        '#36A2EB'
+          '#FF6384',
+          '#36A2EB'
         ]
       }]
     };
     return (
       <div>
-
-        <div>
-
-          <ul>
-            {this.state.properties.map(item => (
-              <li key={item}>
-                <p>Property Name : {item.property}</p>
-
-                <p>Seller Name : {item.seller}</p>
-                <p>Buyer Name : {item.buyer}</p>
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <p>------- Some Statistics ------</p>
-        <div>
-          {/* <Bar
-        data={this.state.chartData}
-        // width={100}
-        // height={50}
-        options={{ maintainAspectRatio: false }}
-        /> */}
+        <p className="stats">Statistics of the Easy Homes Properties</p>
+        <div className="bar">
           <Bar
             data={chartData}
             options={{
@@ -185,8 +164,8 @@ export default class admin extends React.Component {
           />
         </div>
         <div>
-        <h2>React Doughnut with Text Example</h2>
-        <Doughnut data={options} />
+          <h2 className="pie">Total Properties Sold/Not Sold by Easy Homes</h2>
+          <Doughnut data={options} />
         </div>
       </div>
     )
