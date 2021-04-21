@@ -23,7 +23,7 @@ class Seller extends Component {
             previewSource: '',
             imageurl: "",
             selectedImages: [],
-            seller: {}
+            seller: {},
         }
         this.loadSellerDetails = this.loadSellerDetails.bind(this);
     }
@@ -130,6 +130,8 @@ class Seller extends Component {
             .catch(error => {
                 console.log(error)
             })
+        alert("Property added successfully!!!");
+        window.location.assign('/property');
     }
 
 
@@ -176,12 +178,17 @@ class Seller extends Component {
     }
 
     handleSubmit = (event) => {
-        //console.log('submitting')
-        event.preventDefault()
-        this.getData();
-        if (!this.state.previewSource) return;
-
-        this.setState({ uploadImage: this.state.previewSource })
+        if (this.state.propertyName !== "" && this.state.propertyDesc !== "" && this.state.propertyType !== "" && this.state.bed !== "" && this.state.bath !== ""
+            && this.state.propertySqftArea !== "" && this.state.propertyPrice !== "" && this.state.propertyStreet !== "" && this.state.propertyCity !== ""
+            && this.state.propertyState !== "" && this.state.propertyZipcode !== "" && this.state.propertyBuildDate !== "") {
+            event.preventDefault()
+            this.getData();
+            if (!this.state.previewSource) return;
+            this.setState({ uploadImage: this.state.previewSource })
+        }
+        else {
+            alert("Please fill in all the details!!!")
+        }
     }
 
 
@@ -200,7 +207,7 @@ class Seller extends Component {
                         </div>
                         <div className="lblContainer">
                             <label className="desc">Type :</label>
-                            <select value={this.state.value} onChange={this.handleChange}>
+                            <select value={this.state.value} onChange={this.handlepropertyTypeChange}>
                                 <option value="None">None </option>
                                 <option value="Appartment">Appartment </option>
                                 <option value="Condos">Condos</option>

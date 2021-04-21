@@ -134,25 +134,25 @@ class propertyDetails extends React.Component {
     return (
 
       <>
-      <div className="prop-container">
-        <div className="rowone">
-          <div className="column2">
-            <div className="propName">{this.state && this.state.data && this.state.data.propertyName}</div>
-              <div className="column1">                
+        <div className="prop-container">
+          <div className="rowone">
+            <div className="column2">
+              <div className="propName">{this.state && this.state.data && this.state.data.propertyName}</div>
+              <div className="column1">
                 <div className="sample-box">{this.state && this.state.data && this.state.data.propertyDesc}</div>
                 <div className="prop-add">{this.state && this.state.data && this.state.data.propertyStreet}, {this.state && this.state.data && this.state.data.propertyCity}, {this.state && this.state.data && this.state.data.propertyState} - {this.state && this.state.data && this.state.data.propertyZipcode}</div>
                 <div className="prop-price">${this.state && this.state.data && this.state.data.propertyPrice}</div>
-              </div>   
+              </div>
 
-              <div className="propAmen">               
-                 <pre>   BED  {this.state && this.state.data && this.state.data.bed}      |</pre>
-                 <pre>   BATH  {this.state && this.state.data && this.state.data.bath}    |</pre>
-                 <pre>   {this.state && this.state.data && this.state.data.propertySqftArea}  Sqft </pre>                 
+              <div className="propAmen">
+                <pre>   BED  {this.state && this.state.data && this.state.data.bed}      |</pre>
+                <pre>   BATH  {this.state && this.state.data && this.state.data.bath}    |</pre>
+                <pre>   {this.state && this.state.data && this.state.data.propertySqftArea}  Sqft </pre>
               </div>
 
               <div className="sample-box">
                 <label>Property Type</label>
-                <input id="proptype" value={this.state && this.state.data && this.state.data.propertyType} disabled></input><br/>
+                <input id="proptype" value={this.state && this.state.data && this.state.data.propertyType} disabled></input><br />
                 <label>Property Build Date</label>
                 <input className="propDate" id="propdate" value={this.state && this.state.data && this.state.data.propertyBuildDate} disabled></input>
               </div>
@@ -172,11 +172,11 @@ class propertyDetails extends React.Component {
                   <button disabled={this.state && this.state.disableBtn} className="offer-btn" onClick={this.addToBuyer}>{this.state.btnName}</button>
                 </Link>
               </div>
+            </div>
           </div>
-        </div>
-        <div className="rowtwo">
+          <div className="rowtwo">
             <AliceCarousel autoPlay autoPlayInterval="2000">{
-              this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
+              this.state.data.selectedImages && this.state.data.selectedImages.slice(0, this.state.data.selectedImages.length - 1).map((e, i) => {
                 console.log(e)
                 return (
                   <img src={e} className="sliderimg" />
@@ -186,7 +186,7 @@ class propertyDetails extends React.Component {
             }
             </AliceCarousel>
           </div>
-      </div>        
+        </div>
       </>
     )
   }
