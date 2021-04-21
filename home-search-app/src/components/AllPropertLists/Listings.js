@@ -121,7 +121,7 @@ class Listings extends Component {
                   pathname: `/propertyDetails`,
                   state: { propertyId: listing._id }
                 }}>
-                  <button type="button" >View</button>
+                  <button className="viewBtn" type="button" >View</button>
                 </Link>
               </div>
 
@@ -139,10 +139,6 @@ class Listings extends Component {
         <section className="sortby-area">
           <div className="results">{this.props.globalState.filteredData.length} results found</div>
           <div className="sort-options">
-            <select name="sortby" className="sortby" onChange={this.props.change}>
-              <option value="price-dsc">Lowest Price</option>
-              <option value="price-asc">Highest Price</option>
-            </select>
             <div className="view">
               <i className="fa fa-th-list" aria-hidden="true" onClick={this.props.changeView.bind(null, "long-box")}></i>
               <i className="fa fa-th" aria-hidden="true" onClick={this.props.changeView.bind(null, "box")}></i>

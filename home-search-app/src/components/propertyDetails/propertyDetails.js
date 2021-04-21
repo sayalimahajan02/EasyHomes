@@ -32,7 +32,7 @@ class propertyDetails extends React.Component {
       disableBtn: false,
       btnName: "Start an Offer",
       proceedBtn: false,
-      email:"",
+      email: "",
     }
     this.handleChange = this.handleChange.bind(this);
     this.addToBuyer = this.addToBuyer.bind(this);
@@ -41,7 +41,7 @@ class propertyDetails extends React.Component {
   }
 
   componentDidMount() {
-    if(localStorage.getItem('username')==null || localStorage.getItem('username')=='admin'){
+    if (localStorage.getItem('username') == null || localStorage.getItem('username') == 'admin') {
       alert('You do not have permission to view this page. Please login with proper user');
       window.location.assign('/');
     }
@@ -52,11 +52,11 @@ class propertyDetails extends React.Component {
 
   loadUserDetails() {
     const temp = JSON.parse(localStorage.getItem('user'))
-    console.log("heyyy "+temp)
+    console.log("heyyy " + temp)
     this.setState({
-        email: temp.emailId
+      email: temp.emailId
     })
-}
+  }
 
   loadSellerDetails() {
     const temp = JSON.parse(localStorage.getItem('user'))
@@ -85,8 +85,8 @@ class propertyDetails extends React.Component {
     }
   }
 
-  checkUser(){
-    if(this.state.email === this.state.data.seller.emailId){
+  checkUser() {
+    if (this.state.email === this.state.data.seller.emailId) {
       this.setState({
         disableBtn: true,
         btnName: "You are seller of this property",
@@ -164,7 +164,7 @@ class propertyDetails extends React.Component {
             <div className="column2">
               <div className="propName">{this.state && this.state.data && this.state.data.propertyName}</div>
               <div className="column1">
-                <div className="sample-box">{this.state && this.state.data && this.state.data.propertyDesc}</div>
+                <div className="sample-box1">{this.state && this.state.data && this.state.data.propertyDesc}</div>
                 <div className="prop-add">{this.state && this.state.data && this.state.data.propertyStreet}, {this.state && this.state.data && this.state.data.propertyCity}, {this.state && this.state.data && this.state.data.propertyState} - {this.state && this.state.data && this.state.data.propertyZipcode}</div>
                 <div className="prop-price">${this.state && this.state.data && this.state.data.propertyPrice}</div>
               </div>
@@ -175,10 +175,10 @@ class propertyDetails extends React.Component {
                 <pre>   {this.state && this.state.data && this.state.data.propertySqftArea}  Sqft </pre>
               </div>
 
-              <div className="sample-box">
-                <label>Property Type</label>
+              <div className="sample-box1">
+                <label>Property Type</label><br />
                 <input id="proptype" value={this.state && this.state.data && this.state.data.propertyType} disabled></input><br />
-                <label>Property Build Date</label>
+                <label>Property Build Date</label><br />
                 <input id="propdate" value={Moment(this.state && this.state.data && this.state.data.propertyBuildDate).format('MM-DD-YYYY')} disabled></input>
               </div>
 

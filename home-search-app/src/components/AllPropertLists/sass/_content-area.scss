@@ -358,3 +358,47 @@
 .button-view {
   border-radius: 2%;
 }
+
+.filterBtn {
+  margin-top: 5%;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #068a998e;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+  border-radius: 25px;
+  background-color: #ffffff;
+  color: #068a99;
+  font-weight: bold;
+}
+
+.filterBtn:hover {
+  cursor: pointer;
+  background-color: #068a99;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
+
+.viewBtn {
+  margin-top: 5%;
+  text-align: center;
+  padding: 10px;
+  border: 2px solid #068a998e;
+  width: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5%;
+  border-radius: 25px;
+  background-color: #ffffff;
+  color: #068a99;
+  font-weight: bold;
+}
+
+.viewBtn:hover {
+  cursor: pointer;
+  background-color: #068a99;
+  color: #ffffff;
+  border: 2px solid #ffffff;
+}
