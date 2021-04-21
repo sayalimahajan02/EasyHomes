@@ -47,7 +47,7 @@ export default class Register extends React.Component {
       return;
     }
 
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+    let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
     if (!this.state.email.match(mailformat)) {
       alert('Please enter valid Email format');
       return;
@@ -159,7 +159,7 @@ export default class Register extends React.Component {
     fetch('http://localhost:3000/records/')
       .then(response => response.json())
       .then(response => {
-        for (var i = 0; i < response.length; i++) {
+        for (let i = 0; i < response.length; i++) {
           tmpArray.push(response[i])
         }
 

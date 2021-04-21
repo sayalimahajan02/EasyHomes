@@ -34,7 +34,7 @@ class Login extends React.Component {
     fetch('http://localhost:3000/records/')
       .then(response => response.json())
       .then(response => {
-        for (var i = 0; i < response.length; i++) {
+        for (let i = 0; i < response.length; i++) {
           tmpArray.push(response[i])
         }
 

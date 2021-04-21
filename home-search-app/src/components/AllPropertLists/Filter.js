@@ -17,7 +17,7 @@ class Filter extends Component {
         let cities = this.props.listingsData.map((listing) => {
             return listing['propertyCity']
         })
-        var uniqueCities = Array.from(new Set(cities));
+        let uniqueCities = Array.from(new Set(cities));
         if (uniqueCities != undefined) {
             return uniqueCities.map((city) => {
                 return (
@@ -31,7 +31,7 @@ class Filter extends Component {
         let propertyTypes = this.props.listingsData.map((listing) => {
             return listing['propertyType']
         })
-        var uniqueProperty = Array.from(new Set(propertyTypes));
+        let uniqueProperty = Array.from(new Set(propertyTypes));
         if (uniqueProperty != undefined) {
             return uniqueProperty.map((propertyType) => {
                 return (
@@ -45,7 +45,7 @@ class Filter extends Component {
         let bed = this.props.listingsData.map((listing) => {
             return listing['bed']
         })
-        var uniqueBed = Array.from(new Set(bed));
+        let uniqueBed = Array.from(new Set(bed));
         if (uniqueBed != undefined) {
             return uniqueBed.map((bed) => {
                 return (
@@ -59,7 +59,7 @@ class Filter extends Component {
         let bath = this.props.listingsData.map((listing) => {
             return listing['bath']
         })
-        var uniqueBath = Array.from(new Set(bath));
+        let uniqueBath = Array.from(new Set(bath));
         if (uniqueBath != undefined) {
             return uniqueBath.map((bath) => {
                 return (

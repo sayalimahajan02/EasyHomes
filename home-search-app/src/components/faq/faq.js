@@ -30,7 +30,7 @@ export default class faq extends React.Component {
     })
       .then(response => response.json())
       .then(response => {
-        for (var i = 0; i < response.length; i++) {
+        for (let i = 0; i < response.length; i++) {
           tmpArray.push(response[i])
         }
 
