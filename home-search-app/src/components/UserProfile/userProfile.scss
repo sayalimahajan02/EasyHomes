@@ -1,0 +1,76 @@
+.userProf {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+.oneRow {
+  margin: 20px;
+  background-color: whitesmoke;
+  padding: 20px;
+  border: 1px solid #068a99;
+}
+
+.oneSub {
+  font-size: 16px;
+  font-weight: smaller;
+  margin: 10px 0px;
+}
+
+.userName {
+  font-size: 22px;
+  color: #068a99;
+  font-weight: bolder;
+}
+
+.updateBtn {
+  background-color: #068a99;
+  border-color: #0a4349;
+  color: white;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  width: 300px;
+  cursor: pointer;
+}
+
+.updateBtn:hover {
+  background-color: #2ce7fc;
+  border-color: #566668;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.updLabel {
+  font-size: 16px;
+  font-weight: smaller;
+}
+
+.updInp {
+  padding: 10px;
+  margin: 10px;
+}
+
+.sample-box {
+  display: inline-table;
+  margin: 20px;
+  gap: 5px;
+}
+
+.sample-box h5 {
+  font-size: 22px;
+  color: #068a99;
+  font-weight: bolder;
+  padding: 20px 0px;
+}
+
+.propB {
+  font-size: 20px;
+  padding: 20px 0px;
+}
+
+.propS {
+  font-size: 20px;
+  padding: 20px 0px;
+}
