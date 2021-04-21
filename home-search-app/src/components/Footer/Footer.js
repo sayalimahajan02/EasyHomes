@@ -16,23 +16,23 @@ class Footer extends React.Component {
                         <p>Leaders in the real estate industry send thousands of texts using our platform. After nearly a decade in text marketing, we’ve learned a thing or two about works and what doesn’t.</p>
                     </section>           
                     <section class="footQview">
-                        <b>ABOUT</b>
+                        <b>About</b>
                         <div class="ftQV">
-                            <li>How we work</li>
-                            <li>Our News Room</li>
-                            <li>Company Luxes</li>
-                            <li>Career with us</li>
-                            <li>What you speak about us?</li>
+                            <li>Know about us</li>
+                            <li>News</li>
+                            <li>Our Services</li>
+                            <li>Careers</li>
+                            <li>Your feed back</li>
                         </div>
                     </section>
                     <section class="footServ">
-                        <b>Our Community</b>
+                        <b>Community</b>
                         <div class="ftSL">
-                            <li>Help Center for Cancellations</li>
-                            <li>Guest Referals</li>
-                            <li>Gift Vouchers</li>
-                            <li>Our Associates</li>
-                            <li>Resource Center</li>
+                            <li>Cancellations</li>
+                            <li>Help</li>
+                            <li>Our Promo codes</li>
+                            <li>Our Employees</li>
+                            <li>Resources</li>
                         </div>
                     </section>
                     <section class="footCntct">
@@ -46,12 +46,7 @@ class Footer extends React.Component {
             <div class="ftrtail">
                 <div class="copyRights">
                     <div class="leftCR">
-                        <p><small>&copy; Copyright 2021, <strong class="cpyStrg">Easy Homes Inc.,</strong><pre>    </pre></small></p>
-                        <div class="lastLine">
-                            <li>Privacy</li>
-                            <li>Terms</li>
-                            <li>Sitemap</li>
-                        </div>
+                        <pre><small>&copy; Copyright 2021, <strong class="cpyStrg">Easy Homes Inc.,</strong></small>    <b>  |  Privacy |  Services |  Terms and Conditions  </b>  </pre> 
                     </div>
                 </div>
             </div> 
