@@ -9,7 +9,7 @@ import cors from 'cors';
 
 const app = express();
 
-//connect to db
+//cloud connect to mongo db
 mongoose.connect("mongodb+srv://admin:admin@cluster0.lvmbi.mongodb.net/homeSearch?authSource=admin&replicaSet=atlas-8zorfc-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true", {
     keepAlive: true,
     useNewUrlParser: true,
@@ -28,10 +28,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// app.use('/', indexRouter);
-// app.use('/users', usersRouter);
-
 routes(app);
 
 export default app;

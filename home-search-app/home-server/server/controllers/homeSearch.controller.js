@@ -1,8 +1,5 @@
 import homeSearchService from '../services/homeSearch.service';
 
-
-
-
 //CRUD OPERATIONS
 
 const index = (request, response) => {

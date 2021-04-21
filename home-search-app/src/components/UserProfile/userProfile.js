@@ -82,7 +82,7 @@ class userProfile extends React.Component {
         })
             .then(response => response.json())
             .then(response => {
-                for (var i = 0; i < response.length; i++) {
+                for (let i = 0; i < response.length; i++) {
                     if (response[i].buyer) {
                         if (JSON.parse(response[i].buyer).emailId === this.state.userEmail) {
                             tmpBought.push({

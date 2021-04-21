@@ -1,10 +1,6 @@
 import mongoose from 'mongoose';
 const PropertySchema = new mongoose.Schema(
     {
-        // propertyId: {
-        //     type: Number,
-        //     required: "Property ID cannot be null."
-        // },
         propertyName: {
             type: String
         },

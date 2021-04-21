@@ -20,7 +20,7 @@ class Listings extends Component {
     }
     // box
     return listingsData.map((listing, index) => {
-      var divStyle = {
+      let divStyle = {
         backgroundImage: `url(${listing.selectedImages[0]})`
       }
       if (this.props.globalState.view === 'box') {

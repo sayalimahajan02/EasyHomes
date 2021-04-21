@@ -44,7 +44,7 @@ class RealEstate extends Component {
     fetch('http://localhost:3000/homeSearch/')
       .then(response => response.json())
       .then(response => {
-        for (var i = 0; i < response.length; i++) {
+        for (let i = 0; i < response.length; i++) {
           tmpArray.push(response[i])
         }
         this.setState({

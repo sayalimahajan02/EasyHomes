@@ -4,12 +4,7 @@ const router = express.Router();
 
 import homeSearchController from "../controllers/homeSearch.controller";
 
-
-
-
 //express framework
-
-
 
 /**
 
@@ -24,8 +19,6 @@ router.route('/homeSearch')
     .get(homeSearchController.index)
 
     .post(homeSearchController.create);
-
-
 
 /**
 
