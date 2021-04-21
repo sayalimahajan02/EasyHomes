@@ -3,6 +3,8 @@ import { Redirect } from "react-router-dom";
 import { NavLink } from 'react-router-dom';
 import './../Header/Header.scss';
 import Logo from './../images/homeLogo.PNG';
+import User from './../images/iconfinder_user_285655.png';
+
 
 class Header extends React.Component {
 
@@ -32,17 +34,17 @@ class Header extends React.Component {
       <div className='header-wrapper'>
         <header>
           <nav className='left-nav'>
-            <NavLink to='/aboutus'>About Us</NavLink>
+            <NavLink to='/aboutus'>ABOUT US</NavLink>
             {
               (this.state.loggedIn != null && this.state.loggedIn)
-                ? this.state.username == 'admin' ? null : <NavLink to='/property'>Buy</NavLink>
-                : <NavLink to='/login'>Buy</NavLink>
+                ? this.state.username == 'admin' ? null : <NavLink to='/property'>BUY</NavLink>
+                : <NavLink to='/login'>BUY</NavLink>
             }
 
             {
               (this.state.loggedIn != null && this.state.loggedIn)
-                ? this.state.username == 'admin' ? null : <NavLink to='/Seller'>Sell</NavLink>
-                : <NavLink to='/login'>Sell</NavLink>
+                ? this.state.username == 'admin' ? null : <NavLink to='/Seller'>SELL</NavLink>
+                : <NavLink to='/login'>SELL</NavLink>
             }
           </nav>
           <div className='logo'>
@@ -50,15 +52,15 @@ class Header extends React.Component {
               <span>Easy Homes</span></a>
           </div>
           <nav className='right-nav'>
-            {!this.state.loggedIn ? <NavLink to='/login'>SignIn</NavLink> : null}
-            {!this.state.loggedIn ? null : <NavLink onClick={this.logoutHandle} to='/'>Logout</NavLink>}
-            {!this.state.loggedIn ? <NavLink to='/signup'>SignUp</NavLink> : null}
+            {!this.state.loggedIn ? <NavLink to='/login'>SIGN IN</NavLink> : null}
+            {!this.state.loggedIn ? null : <NavLink onClick={this.logoutHandle} to='/'>LOGOUT</NavLink>}
+            {!this.state.loggedIn ? <NavLink to='/signup'>SIGN UP</NavLink> : null}
             <NavLink to='/faq'>FAQs</NavLink>
-            {!this.state.loggedIn ? <NavLink to='/'> Guest </NavLink>
+            {!this.state.loggedIn ? <NavLink to='/'> GUEST </NavLink>
               : localStorage.getItem('username') == 'admin'
                 ? <NavLink to='/admin'> Admin </NavLink>
                 : <NavLink to='/profile'>{this.state.username}</NavLink>}
-
+          <img className="userImg" src={User}/>
 
           </nav>
 

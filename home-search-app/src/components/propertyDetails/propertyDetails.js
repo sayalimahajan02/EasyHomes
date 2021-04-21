@@ -117,28 +117,6 @@ class propertyDetails extends React.Component {
       })
   }
 
-  // renderPhotos = (source) => {
-  //   // let images;
-  //   // if (source.length >= 1) {
-  //   //   images = source.map((photo) => {
-  //   //     return photo.blob.slice(5, photo.blob.length);
-  //   //   });
-  //   //   console.log(images)
-  //   // } else {
-  //   //   return (
-  //   //     <div>No Images found</div>
-  //   //   )
-  //   // }
-  //   console.log(source)
-  //   return (
-  //     source.map((imgUrl) => {
-  //       <div>
-  //         <img src={imgUrl.blob.slice(5, imgUrl.blob.length)} />
-  //       </div>
-  //     })
-  //   );
-  // };
-
   renderPhotos = (source) => {
     console.log('source: ', source);
     if (source && source.length >= 1) {
@@ -156,86 +134,59 @@ class propertyDetails extends React.Component {
     return (
 
       <>
-        <div class="row">
-          <div className="column1">
+      <div className="prop-container">
+        <div className="rowone">
+          <div className="column2">
+            <div className="propName">{this.state && this.state.data && this.state.data.propertyName}</div>
+              <div className="column1">                
+                <div className="sample-box">{this.state && this.state.data && this.state.data.propertyDesc}</div>
+                <div className="prop-add">{this.state && this.state.data && this.state.data.propertyStreet}, {this.state && this.state.data && this.state.data.propertyCity}, {this.state && this.state.data && this.state.data.propertyState} - {this.state && this.state.data && this.state.data.propertyZipcode}</div>
+                <div className="prop-price">${this.state && this.state.data && this.state.data.propertyPrice}</div>
+              </div>   
 
-            <div class="prop-add">{this.state && this.state.data && this.state.data.propertyStreet}, {this.state && this.state.data && this.state.data.propertyCity}, {this.state && this.state.data && this.state.data.propertyState} - {this.state && this.state.data && this.state.data.propertyZipcode}</div>
-            <div class="prop-price">${this.state && this.state.data && this.state.data.propertyPrice}</div>
-          </div>
-          <div class="column2">
-            <div>{this.state && this.state.data && this.state.data.propertyName}</div>
-            <div className="sample-box">{this.state && this.state.data && this.state.data.propertyDesc}</div>
-
-            <table>
-              <tr>
-                <th>{this.state && this.state.data && this.state.data.bed}</th>
-                <th>{this.state && this.state.data && this.state.data.bath}</th>
-                <th>{this.state && this.state.data && this.state.data.propertySqftArea}</th>
-              </tr>
-              <tr>
-                <td>BED</td>
-                <td>BATH</td>
-                <td>Sqft</td>
-              </tr>
-            </table>
-            <div className="sample-box">
-              <label>Property Type</label>
-              <input id="proptype" value={this.state && this.state.data && this.state.data.propertyType} disabled></input>
-              <label>Property Build Date</label>
-              <input id="propdate" value={this.state && this.state.data && this.state.data.propertyBuildDate} disabled></input>
-            </div>
-            <button className="contact-seller-btn" onClick={this.addNewTask}>Contact Seller</button>
-
-            {this.state.showDiv ? <div>
-              <div className="seller-details">
-                <label>Email</label>
-                <input id="email" value={this.state && this.state.data && this.state.data.seller.emailId} disabled></input>
-                <label>Contact</label>
-                <input id="contact" value={this.state.seller.contact} disabled></input>
+              <div className="propAmen">               
+                 <pre>   BED  {this.state && this.state.data && this.state.data.bed}      |</pre>
+                 <pre>   BATH  {this.state && this.state.data && this.state.data.bath}    |</pre>
+                 <pre>   {this.state && this.state.data && this.state.data.propertySqftArea}  Sqft </pre>                 
               </div>
-            </div> : null}
-            <div className="offer-btn-class">
-              <Link to="/payment">
-                <button disabled={this.state && this.state.disableBtn} className="offer-btn" onClick={this.addToBuyer}>{this.state.btnName}</button>
-              </Link>
-            </div>
-          </div>
-          <div>
+
+              <div className="sample-box">
+                <label>Property Type</label>
+                <input id="proptype" value={this.state && this.state.data && this.state.data.propertyType} disabled></input><br/>
+                <label>Property Build Date</label>
+                <input className="propDate" id="propdate" value={this.state && this.state.data && this.state.data.propertyBuildDate} disabled></input>
+              </div>
+
+              <button className="contact-seller-btn" onClick={this.addNewTask}>Contact Seller</button>
+
+              {this.state.showDiv ? <div>
+                <div className="seller-details">
+                  <label>Email</label>
+                  <input id="email" value={this.state && this.state.data && this.state.data.seller.emailId} disabled></input>
+                  <label>Contact</label>
+                  <input id="contact" value={this.state.seller.contact} disabled></input>
+                </div>
+              </div> : null}
+              <div className="offer-btn-class">
+                <Link to="/payment">
+                  <button disabled={this.state && this.state.disableBtn} className="offer-btn" onClick={this.addToBuyer}>{this.state.btnName}</button>
+                </Link>
+              </div>
           </div>
         </div>
+        <div className="rowtwo">
+            <AliceCarousel autoPlay autoPlayInterval="2000">{
+              this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
+                console.log(e)
+                return (
+                  <img src={e} className="sliderimg" />
 
-        {/* <div>
-          {
-            this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
-              console.log(e)
-              return (
-                <img src={e}></img>
-              )
-            })
-          }
-        </div> */}
-
-        {/* <Carousel>
-          {this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
-            console.log(e)
-            return (
-              <img src={e}></img>
-            )
-          })
-          }
-        </Carousel> */}
-
-        <AliceCarousel autoPlay autoPlayInterval="3000">{
-          this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
-            console.log(e)
-            return (
-              <img src={e} className="sliderimg" />
-
-            )
-          })
-        }
-
-        </AliceCarousel>
+                )
+              })
+            }
+            </AliceCarousel>
+          </div>
+      </div>        
       </>
     )
   }
