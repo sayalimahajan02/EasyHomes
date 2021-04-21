@@ -23,6 +23,8 @@ export default class faq extends React.Component {
   componentWillMount() {
     this.getData()
   }
+  
+  //get faq data
   getData() {
     const tmpArray = [];
     fetch('http://localhost:3000/faq/', {
@@ -85,6 +87,7 @@ export default class faq extends React.Component {
 
   }
 
+  //add new faq
 
   addNewFaq() {
 

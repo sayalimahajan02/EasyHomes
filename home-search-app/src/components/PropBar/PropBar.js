@@ -11,6 +11,7 @@ class PropBar extends React.Component {
     super(props);
   }
 
+  //property bar
   render() {
     return (
       <section class="cServices"> 

@@ -16,6 +16,8 @@ class Header extends React.Component {
     }
     this.logoutHandle = this.logoutHandle.bind(this);
   }
+
+  //handle logout
   logoutHandle(e) {
     e.preventDefault();
     localStorage.clear();

@@ -36,6 +36,7 @@ class Seller extends Component {
         this.loadSellerDetails()
     }
 
+    //load seller
     loadSellerDetails() {
         const temp = JSON.parse(localStorage.getItem('user'))
         this.setState({
@@ -43,77 +44,97 @@ class Seller extends Component {
         })
     }
 
+    //handle change
     handlepropertyIdChange = (event) => {
         this.setState({
             propertyId: event.target.value
         })
     }
 
+    //handle change
     handlepropertyNameChange = (event) => {
         this.setState({
             propertyName: event.target.value
         })
     }
 
+    //handle change
     handlepropertyDescChange = (event) => {
         this.setState({
             propertyDesc: event.target.value
         })
     }
+
+    // //handle change
     handlepropertyTypeChange = (event) => {
         this.setState({
             propertyType: event.target.value
         })
     }
 
+    //handle change
     handlepropertyBedChange = (event) => {
         this.setState({
             bed: event.target.value
         })
     }
 
+    //handle change
     handlepropertyBathChange = (event) => {
         this.setState({
             bath: event.target.value
         })
     }
 
+    //handle change
     handlepropertySqftAreaChange = (event) => {
         this.setState({
             propertySqftArea: event.target.value
         })
     }
+
+    //handle change
     handlepropertyPriceChange = (event) => {
         this.setState({
             propertyPrice: event.target.value
         })
     }
+
+    //handle change
     handlepropertyStreetChange = (event) => {
         this.setState({
             propertyStreet: event.target.value
         })
     }
+
+    //handle change
     handlepropertyCityChange = (event) => {
         this.setState({
             propertyCity: event.target.value
         })
     }
+
+    //handle change
     handlepropertyStateChange = (event) => {
         this.setState({
             propertyState: event.target.value
         })
     }
+
+    //handle change
     handlepropertyZipcodeChange = (event) => {
         this.setState({
             propertyZipcode: event.target.value
         })
     }
+    //handle change
     handlepropertyBuildDateChange = (event) => {
         this.setState({
             propertyBuildDate: event.target.value
         })
     }
 
+    //post data to database
     async getData() {
         this.state.selectedImages.push(this.state.imageurl)
         const { propertyId, propertyName, propertyDesc, propertyType, propertySqftArea, propertyPrice, propertyStreet,
@@ -139,6 +160,7 @@ class Seller extends Component {
     }
 
 
+    //handle file change
     handleFileInputChange = async e => {
 
         const files = e.target.files
@@ -171,6 +193,7 @@ class Seller extends Component {
         }
     }
 
+    //preview file
     previewFile = (file) => {
 
         const reader = new FileReader();
@@ -181,6 +204,7 @@ class Seller extends Component {
         }
     }
 
+    //submit data
     handleSubmit = (event) => {
         if (this.state.propertyName !== "" && this.state.propertyDesc !== "" && this.state.propertyType !== "" && this.state.bed !== "" && this.state.bath !== ""
             && this.state.propertySqftArea !== "" && this.state.propertyPrice !== "" && this.state.propertyStreet !== "" && this.state.propertyCity !== ""
@@ -213,7 +237,7 @@ class Seller extends Component {
                             <label className="desc">Type :</label>
                             <select value={this.state.value} onChange={this.handlepropertyTypeChange}>
                                 <option value="None">None </option>
-                                <option value="Appartment">Appartment </option>
+                                <option value="Appartment">Apartment </option>
                                 <option value="Condos">Condos</option>
                                 <option value="Home">Home</option>
                                 <option value="Studio">Studio</option>

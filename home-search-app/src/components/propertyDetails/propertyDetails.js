@@ -50,14 +50,15 @@ class propertyDetails extends React.Component {
     this.loadUserDetails()
   }
 
+  //load user details
   loadUserDetails() {
     const temp = JSON.parse(localStorage.getItem('user'))
-    console.log("heyyy " + temp)
     this.setState({
       email: temp.emailId
     })
   }
 
+    //load seller details
   loadSellerDetails() {
     const temp = JSON.parse(localStorage.getItem('user'))
     this.setState({
@@ -69,6 +70,7 @@ class propertyDetails extends React.Component {
     this.setState({ [field]: event.target.value })
   }
 
+  //add buyer to property
   addToBuyer() {
 
     if (!this.state.data.buyer) {
@@ -85,6 +87,7 @@ class propertyDetails extends React.Component {
     }
   }
 
+  //check if seller and user are same
   checkUser() {
     if (this.state.email === this.state.data.seller.emailId) {
       this.setState({
@@ -202,7 +205,7 @@ class propertyDetails extends React.Component {
           <div className="rowtwo">
             <AliceCarousel autoPlay autoPlayInterval="2000">{
               this.state.data.selectedImages && this.state.data.selectedImages.slice(0, this.state.data.selectedImages.length - 1).map((e, i) => {
-                console.log(e)
+                // console.log(e)
                 return (
                   <img src={e} className="sliderimg" />
 

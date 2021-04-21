@@ -22,52 +22,9 @@ class UserService extends React.Component {
 
 }
 
-//   register( emailId, password) {
-//   const requestOptions = {
-//     method: 'POST',
-//         headers: { 'Content-Type': 'application/json' },
-//         body: JSON.stringify(
-//             { 
-//              emailId : emailId,
-//              password : password
-//             })
-//     };
-//    let tmpArray=[]
-//     fetch(apiurl, requestOptions)
-//    .then(response => response.json()) 
-//    .then(response =>{
-//       alert(response);
-//       for (var i = 0; i < response.length; i++) {
-//         tmpArray.push(response[i])
-//       }
-//     })
-//     return tmpArray;
-// }
-
+//user registration
 register(){
-  // const tmpArray = [];
-  // const requestOptions = {
-  //       method: 'POST',
-  //           headers: { 'Content-Type': 'application/json' },
-  //           body: JSON.stringify(
-  //               { 
-  //                emailId : emailId,
-  //                password : password
-  //               })
-  //       };
-	// 	fetch(apiurl,requestOptions)
-	// 		.then(response => response.json())
-	// 		.then(response => {
-	// 			for (var i = 0; i < response.length; i++) {
-	// 				tmpArray.push(response[i])
-	// 			}
 
-	// 			this.setState({
-	// 				data: tmpArray
-	// 			})
-
-	// 		})
-	// 		.catch(error => this.setState({ error }));
 }
 
 }

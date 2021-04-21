@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+//faq schema
 const FaqSchema = new mongoose.Schema({
     question: {
         type: String

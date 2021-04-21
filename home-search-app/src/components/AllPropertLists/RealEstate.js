@@ -70,7 +70,7 @@ class RealEstate extends Component {
   }
 
   filteredData() {
-    console.log("filter")
+    // console.log("filter")
     let newData = this.state.listingsData;
     if (this.state.city !== "All") {
       newData = newData.filter((filterProperty) => {
@@ -83,16 +83,16 @@ class RealEstate extends Component {
 
         return filterProperty.propertyType == this.state.propertyType
       })
-      console.log('type', newData)
+      // console.log('type', newData)
     }
     if (this.state.bed !== "Select") {
       newData = newData.filter((filterProperty) => {
-        console.log('bed', newData)
+        // console.log('bed', newData)
         return filterProperty.bed == this.state.bed
       })
     }
     if (this.state.bath !== "Select") {
-      console.log('bath', newData)
+      // console.log('bath', newData)
       newData = newData.filter((filterProperty) => {
 
         return filterProperty.bath == this.state.bath

@@ -15,6 +15,8 @@ import Footer from './components/Footer/Footer';
 import Payment from './components/Paypal/Paypal';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
+
+//routes to pages
 function App() {
 
   return (

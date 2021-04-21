@@ -20,6 +20,7 @@ class Login extends React.Component {
     this.submitForm = this.submitForm.bind(this)
   }
 
+  //handle on change
   onChange(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -29,6 +30,8 @@ class Login extends React.Component {
   componentWillMount() {
     this.getData()
   }
+
+  //get user data
   getData() {
     const tmpArray = [];
     fetch('http://localhost:3000/records/')
@@ -46,6 +49,7 @@ class Login extends React.Component {
       .catch(error => this.setState({ error }));
   }
 
+  
   responseSuccessGoogle = (response) => {
     console.log(response.profileObj);
     for (let i = 0; i < this.state.data.length; i++) {

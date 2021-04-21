@@ -6,7 +6,7 @@ class Footer extends React.Component {
   constructor(props) {
     super(props);
   }
-
+//footer
   render() {
     return (
         <footer class="ftr">    

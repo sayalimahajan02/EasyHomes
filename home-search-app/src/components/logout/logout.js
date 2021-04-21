@@ -17,11 +17,13 @@ class Logout extends React.Component {
     }
     
     componentDidMount(){
-        console.log("inside method");
+        // console.log("inside method");
         this.logoutHandle();
     }
+
+    //handle logout
   logoutHandle(){
-      console.log("loggin out");
+      // console.log("loggin out");
     localStorage.clear();
     this.setState({loggedIn : false});
     this.setState({username : ''});
