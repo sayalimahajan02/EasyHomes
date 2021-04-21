@@ -1,6 +1,6 @@
 import React from "react";
 import { Bar } from 'react-chartjs-2';
-
+import {Doughnut} from 'react-chartjs-2';
 export default class admin extends React.Component {
   constructor(props) {
     super(props);
@@ -8,6 +8,7 @@ export default class admin extends React.Component {
       properties: [],
       city: [],
       count: [],
+      soldPropCount : 0
 
     }
     this.getData = this.getData.bind(this);
@@ -58,14 +59,28 @@ export default class admin extends React.Component {
       .then(response => response.json())
       .then(response => {
         for (var i = 0; i < response.length; i++) {
-          if (response[i].seller && response[i].buyer) {
-            tmpArray.push({
-              property: response[i].propertyName,
-              seller: response[i].seller.emailId.substring(0, response[i].seller.emailId.lastIndexOf('@'))
-              , buyer: JSON.parse(response[i].buyer).emailId.substring(0, JSON.parse(response[i].buyer).emailId.lastIndexOf('@'))
-              //,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
-            })
+          if(response[i].seller)
+          {
+              this.setState({
+                tmpsell : response[i].seller.emailId.substring(0,response[i].seller.emailId.lastIndexOf('@'))
+              })
           }
+          if(response[i].buyer){
+            this.setState({
+              tempbuy : JSON.parse(response[i].buyer).emailId.substring(0,JSON.parse(response[i].buyer).emailId.lastIndexOf('@')) 
+              ,soldPropCount :this.state.soldPropCount+1
+          })
+        }
+        else{
+          this.setState({
+            tempbuy :''
+          })
+        }
+          tmpArray.push({property : response[i].propertyName ,
+                     seller : this.state.tmpsell
+                     ,buyer : this.state. tempbuy
+                     //,buyer : response[i].buyer.emailId.substring(0,response[i].buyer.emailId.lastIndexOf('@')) 
+                    })
         }
 
         this.setState({
@@ -86,7 +101,7 @@ export default class admin extends React.Component {
       datasets: [{
         borderWidth: 1,
         space: 10,
-        label: 'Population',
+        label: 'Number',
         data: this.state.count,
         backgroundColor: ['rgbs(123,231,232,1)',
           'rgbs(232,123,231,1)',
@@ -96,6 +111,28 @@ export default class admin extends React.Component {
       }],
 
     }
+
+    //for pie 
+
+    const soldPercentage=(100* this.state.soldPropCount)/(this.state.properties.length);
+    const options={
+      labels: [
+        'Property Sold',
+        'Property Not Sold'
+      ],
+      datasets: [{
+        data: [
+          soldPercentage, (100-soldPercentage)],
+        backgroundColor: [
+        '#FF6384',
+        '#36A2EB'
+        ],
+        hoverBackgroundColor: [
+        '#FF6384',
+        '#36A2EB'
+        ]
+      }]
+    };
     return (
       <div>
 
@@ -126,7 +163,7 @@ export default class admin extends React.Component {
             options={{
               title: {
                 display: true,
-                text: 'Average Rainfall per month',
+                text: 'Total number of properties per city',
                 fontSize: 20
               },
               legend: {
@@ -146,6 +183,10 @@ export default class admin extends React.Component {
               }
             }}
           />
+        </div>
+        <div>
+        <h2>React Doughnut with Text Example</h2>
+        <Doughnut data={options} />
         </div>
       </div>
     )

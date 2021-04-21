@@ -37,6 +37,10 @@ class propertyDetails extends React.Component {
   }
 
   componentDidMount() {
+    if(localStorage.getItem('username')==null || localStorage.getItem('username')=='admin'){
+      alert('You do not have permission to view this page. Please login with proper user');
+      window.location.assign('/');
+    }
     this.loadSellerDetails()
     this.getData()
   }

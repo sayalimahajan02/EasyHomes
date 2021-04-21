@@ -53,6 +53,11 @@ export default class Register extends React.Component {
       return;
     }
 
+    if (this.state.email.toLocaleLowerCase().includes('admin')) {
+      alert('Your Email cannot contain admin. Please enter valid Email format');
+      return;
+    }
+    
     if (this.state.confirmpassword.trim() == "") {
       alert('Please enter Confirm password');
       return;
@@ -208,7 +213,7 @@ export default class Register extends React.Component {
                 <button className="btnSignup">Signup</button>
                 <br />
 
-                <GoogleLogin
+                <GoogleLogin className="btnSignup"
                   clientId="402608281823-mfler2nvm70fq6jab80330m767f7rtde.apps.googleusercontent.com"
                   buttonText="SignUp with Google"
                   onSuccess={this.responseSuccessGoogle}
