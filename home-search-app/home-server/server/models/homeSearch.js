@@ -1,10 +1,10 @@
 import mongoose from 'mongoose';
 const PropertySchema = new mongoose.Schema(
     {
-        propertyId: {
-            type: Number,
-            required: "Property ID cannot be null."
-        },
+        // propertyId: {
+        //     type: Number,
+        //     required: "Property ID cannot be null."
+        // },
         propertyName: {
             type: String
         },
@@ -44,13 +44,13 @@ const PropertySchema = new mongoose.Schema(
         },
         selectedImages: {
             type: Array
-        },bed:{
+        }, bed: {
 
             type: Number
         },
-        bath:{    
+        bath: {
             type: Number
-            },
+        },
     },
     {
         versionKey: false
