@@ -79,46 +79,50 @@ class Filter extends Component {
                         <option value="All">All</option>
                         {this.cities()}
                     </select>
-                    <label htmlFor="propertyType">Type of Property</label>
+                    <label htmlFor="propertyType">Property Type</label>
                     <select name="propertyType" className="filters property-type" onChange={this.props.change}>
                         <option value="All">All</option>
                         {this.propertyTypes()}
                     </select>
-                    <label htmlFor="bedrooms">Bedrooms</label>
+                    <label htmlFor="bedrooms">Bed</label>
                     <select name="bed" className="filters number-of-bedrooms" onChange={this.props.change}>
                         <option value="Select">Select</option>
                         {this.bedrooms()}
                     </select>
-                    <label htmlFor="bathrooms">Bathrooms</label>
+                    <label htmlFor="bathrooms">Bath</label>
                     <select name="bath" className="filters number-of-bathrooms" onChange={this.props.change}>
                         <option value="Select">Select</option>
                         {this.bathrooms()}
                     </select>
 
                     <div className="filters floor-space">
-                        <span className="title">Floor Space</span>
+                        <span className="title">Property Sqft Area</span>
                         <input type="text" name="min_floor_space" className="min-floor-space" onChange={this.props.change} value={this.state.min_floor_space} />
                         <input type="text" name="max_floor_space" className="max-floor-space" onChange={this.props.change} value={this.state.max_floor_space} />
                     </div>
                     <div className="filters price">
-                        <span className="title">Price</span>
+                        <span className="title">Property Price</span>
                         <input type="text" name="min_price" className="min-price" onChange={this.props.change} value={this.state.min_price} />
                         <input type="text" name="max_price" className="max-price" onChange={this.props.change} value={this.state.max_price} />
                     </div>
 
                     <div className="filters extras">
                         <span className="title">Extras</span>
-                        <label htmlFor="extras">
+                        <label className="extras">
+                            <span>Gym</span>
+                            <input name="gym" value="gym" type="checkbox" onChange={this.props.change} />
+                        </label>
+                        <label className="extras">
                             <span>Elevator</span>
                             <input name="elevator" value="elevator" type="checkbox" onChange={this.props.change} />
                         </label>
-                        <label htmlFor="extras">
+                        <label className="extras">
                             <span>Swimming Pool</span>
                             <input name="swimming_pool" value="swimming_pool" type="checkbox" onChange={this.props.change} />
                         </label>
-                        <label htmlFor="extras">
-                            <span>Finished Basement</span>
-                            <input name="finished_basement" value="finished_basement" type="checkbox" onChange={this.props.change} />
+                        <label className="extras">
+                            <span>Garden</span>
+                            <input name="garden" value="garden" type="checkbox" onChange={this.props.change} />
                         </label>
                     </div>
                     <button type="button" onClick={this.props.filteredData}>Filter</button>

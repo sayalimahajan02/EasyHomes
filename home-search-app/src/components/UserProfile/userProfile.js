@@ -31,7 +31,7 @@ class userProfile extends React.Component {
     //on change
     onChange(e) {
         this.setState({
-            contact: e.target.value
+            contactNum: e.target.value
         })
     }
 
@@ -52,7 +52,7 @@ class userProfile extends React.Component {
     }
 
     updateContact() {
-        const contact = this.state.contact
+        const contact = this.state.contactNum
         const pattern = new RegExp("[0-9]{3}-[0-9]{3}-[0-9]{4}")
         if (pattern.test(contact)) {
             this.putData(contact)
@@ -83,7 +83,8 @@ class userProfile extends React.Component {
                         if (JSON.parse(response[i].buyer).emailId === this.state.userEmail) {
                             tmpBought.push({
                                 propName: response[i].propertyName,
-                                propId: response[i].id
+                                propId: response[i].id,
+                                propImg: response[i].selectedImages[0]
                             })
                         }
 
@@ -91,7 +92,8 @@ class userProfile extends React.Component {
                             if (response[i].seller.emailId === this.state.userEmail) {
                                 tmpSold.push({
                                     propName: response[i].propertyName,
-                                    propId: response[i].id
+                                    propId: response[i].id,
+                                    propImg: response[i].selectedImages[0]
                                 })
                             }
                         }
@@ -149,16 +151,12 @@ class userProfile extends React.Component {
                     {this.state.propBought.length == 0 ? 'No items to display' : <ul>
                         {this.state.propBought.map(item => (
                             <li key={item}>
-                                {/* <p><a href = '{item.propId}'>Property Name : {item.propName}</a></p> */}
-                                <p>
-                                    Property Name:
-                                        <Link to={{
-                                        pathname: `/propertyDetails`,
-                                        state: { propertyId: item.propId }
-                                    }}>
-                                        {item.propName}
+                                <div>
+                                    <Link to={{ pathname: `/propertyDetails`, state: { propertyId: item.propId } }}>
+                                        <img src={item.propImg}></img>
                                     </Link>
-                                </p>
+                                    {item.propName}
+                                </div>
                             </li>
                         ))}
                     </ul>}
@@ -169,20 +167,12 @@ class userProfile extends React.Component {
                         <ul>
                             {this.state.propSold.map(item => (
                                 <li key={item}>
-                                    <p>
-                                        Property Name:
-                                            {/*<a href = {'http://localhost:4000/propertyDetails/'+item.propId}>
-                                                Property Name : {item.propName}
-                                            </a> */}
-
-                                        <Link to={{
-                                            pathname: `/propertyDetails`,
-                                            state: { propertyId: item.propId }
-                                        }}>
-                                            {item.propName}
+                                    <div>
+                                        <Link to={{ pathname: `/propertyDetails`, state: { propertyId: item.propId } }}>
+                                            <img src={item.propImg}></img>
                                         </Link>
-
-                                    </p>
+                                        {item.propName}
+                                    </div>
                                 </li>
                             ))}
                         </ul>

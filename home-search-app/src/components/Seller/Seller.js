@@ -6,7 +6,6 @@ class Seller extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            //propertyId: '',
             propertyName: '',
             propertyDesc: '',
             propertyType: '',
@@ -115,8 +114,6 @@ class Seller extends Component {
         this.state.selectedImages.push(this.state.imageurl)
         const { propertyId, propertyName, propertyDesc, propertyType, propertySqftArea, propertyPrice, propertyStreet,
             propertyCity, propertyState, propertyZipcode, propertyBuildDate, bed, bath, seller, buyer, selectedImages } = this.state;
-        //console.log('selectedImages', selectedImages)
-        // selectedImages= selectedImages.pop();
         await fetch('http://localhost:3000/homeSearch/', {
             method: 'POST',
             headers: {
@@ -164,8 +161,6 @@ class Seller extends Component {
                             selectedImages: [...this.state.selectedImages, url]
                         })
                     }
-
-                    //console.log(i, url)
                 })
         }
     }
@@ -194,13 +189,7 @@ class Seller extends Component {
         return (
             <div className="bkImage">
                 <form onSubmit={this.handleSubmit} className="form">
-
                     <div className="formContainer">
-
-                        {/* <div className="lblContainer">
-                    <label className="desc">Property Id :</label>
-                    <input className= "inputProperty" type='number' min="0" value= {this.state.propertyId} onChange = {this.handlepropertyIdChange}/>
-                </div> */}
                         <div className="lblContainer">
                             <label className="desc">Name :</label>
                             <input className="inputProperty" type='text' value={this.state.propertyName} onChange={this.handlepropertyNameChange} />
@@ -271,7 +260,7 @@ class Seller extends Component {
 
                 {this.state.selectedImages && this.state.selectedImages.map((per) => {
                     return (
-                        <img className="br" src={per} alt="chosen" style={{ height: '200px', width: '250px' }} />
+                        <img className="br" src={per} alt="chosen" style={{ height: '200px', width: '250px', margin: "10px" }} />
                     )
                 })
                 }
