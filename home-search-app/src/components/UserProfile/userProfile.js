@@ -47,10 +47,10 @@ class userProfile extends React.Component {
     }
 
     componentWillMount() {
-        if(localStorage.getItem('username')==null || localStorage.getItem('username')=='admin'){
+        if (localStorage.getItem('username') == null || localStorage.getItem('username') == 'admin') {
             alert('You do not have permission to view this page. Please login with proper user');
             window.location.assign('/');
-          }
+        }
         this.loadUserDetails();
         this.getData();
     }
@@ -139,48 +139,56 @@ class userProfile extends React.Component {
     render() {
         return (
             <>
-                <div>Hello {this.state.username},</div>
-                <div className="update-details">
-                    <div>
-                        <label>Update Contact</label>
-                        <input type="tel" placeholder="123-456-7890" defaultValue={this.state.contactNum} onChange={this.onChange}
-                            pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input>
-                        <button onClick={this.updateContact}>Update</button>
-                        <div>{this.state.message}</div>
+                <div className="userProf">
+                    <div className="oneRow">
+                        <div className="oneSub">Hello,
                     </div>
+                        <div className="userName">
+                            {this.state.username}
+                        </div>
+                        <div className="update-details">
+                            <div>
+                                <label className="updLabel">Update Contact</label>
+                                <input className="updInp" type="tel" placeholder="123-456-7890" defaultValue={this.state.contactNum} onChange={this.onChange}
+                                    pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"></input><br />
+                                <button className="updateBtn" onClick={this.updateContact}>Update</button>
+                                <div>{this.state.message}</div>
+                            </div>
 
-                </div>
-                <div class="sample-box">
-                    <h5>Properties you Bought</h5>
-                    {this.state.propBought.length == 0 ? 'No items to display' : <ul>
-                        {this.state.propBought.map(item => (
-                            <li key={item}>
-                                <div>
-                                    <Link to={{ pathname: `/propertyDetails`, state: { propertyId: item.propId } }}>
-                                        <img src={item.propImg}></img>
-                                    </Link>
-                                    {item.propName}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>}
-                </div>
-                <div class="sample-box">
-                    <h5>Properties you Sold</h5>
-                    {this.state.propSold.length == 0 ? 'No items to display' :
-                        <ul>
-                            {this.state.propSold.map(item => (
+                        </div>
+                    </div>
+                    <div class="sample-box">
+                        <h5>Properties you Bought</h5>
+                        {this.state.propBought.length == 0 ? 'No items to display' : <ul>
+                            {this.state.propBought.map(item => (
                                 <li key={item}>
                                     <div>
                                         <Link to={{ pathname: `/propertyDetails`, state: { propertyId: item.propId } }}>
                                             <img src={item.propImg}></img>
-                                        </Link>
-                                        {item.propName}
+                                        </Link><br></br>
+                                        <div className="propB">{item.propName}</div>
                                     </div>
                                 </li>
                             ))}
-                        </ul>
-                    }
+                        </ul>}
+                    </div>
+                    <div class="sample-box">
+                        <h5>Properties you Sold</h5>
+                        {this.state.propSold.length == 0 ? 'No items to display' :
+                            <ul>
+                                {this.state.propSold.map(item => (
+                                    <li key={item}>
+                                        <div>
+                                            <Link to={{ pathname: `/propertyDetails`, state: { propertyId: item.propId } }}>
+                                                <img src={item.propImg}></img>
+                                            </Link><br></br>
+                                            <div className="propS">{item.propName}</div>
+                                        </div>
+                                    </li>
+                                ))}
+                            </ul>
+                        }
+                    </div>
                 </div>
             </>
         )

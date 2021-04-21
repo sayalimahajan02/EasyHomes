@@ -1,15 +1,35 @@
-.border-div{
-    border : 1px solid black;
-    padding-top : 20px;
-    padding-bottom : 20px;
-    margin-top : 20px;
-    margin-bottom : 20px;
+.faq-wrapper {
+  margin: 4% auto;
+  width: 80%;
+  background-color: rgb(223, 245, 247);
+}
+
+.border-div {
+  border: 1px solid black;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .bold {
-    font-weight: bolder;
+  font-weight: bolder;
 }
-.buttonClass
-{
-    border: none;
+.buttonClass {
+  border: none;
+}
+
+.input {
+  width: 100%;
+}
+
+.input:hover {
+  width: 100%;
+  border-color: 1px solid teal;
+  background-color: rgb(245, 255, 255);
+  padding: 15px;
+}
+
+.QA {
+  padding: 30px;
 }
