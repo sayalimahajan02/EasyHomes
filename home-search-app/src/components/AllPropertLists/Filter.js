@@ -95,16 +95,7 @@ class Filter extends Component {
                         {this.bathrooms()}
                     </select>
 
-                    <div className="filters floor-space">
-                        <span className="title">Property Sqft Area</span>
-                        <input type="text" name="min_floor_space" className="min-floor-space" onChange={this.props.change} value={this.state.min_floor_space} />
-                        <input type="text" name="max_floor_space" className="max-floor-space" onChange={this.props.change} value={this.state.max_floor_space} />
-                    </div>
-                    <div className="filters price">
-                        <span className="title">Property Price</span>
-                        <input type="text" name="min_price" className="min-price" onChange={this.props.change} value={this.state.min_price} />
-                        <input type="text" name="max_price" className="max-price" onChange={this.props.change} value={this.state.max_price} />
-                    </div>
+
 
                     <div className="filters extras">
                         <span className="title">Extras</span>
@@ -125,7 +116,7 @@ class Filter extends Component {
                             <input name="garden" value="garden" type="checkbox" onChange={this.props.change} />
                         </label>
                     </div>
-                    <button type="button" onClick={this.props.filteredData}>Filter</button>
+                    <button className="filterBtn" type="button" onClick={this.props.filteredData}>Filter</button>
                 </div>
             </section>
         )
