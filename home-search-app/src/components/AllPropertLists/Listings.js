@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Moment from 'moment';
 
 class Listings extends Component {
   constructor() {
@@ -88,7 +89,7 @@ class Listings extends Component {
                   <div className="col-md-9">
                     <div className="user-details">
                       <span className="user-name">{listing.seller.emailId.substring(0, listing.seller.emailId.lastIndexOf('@'))}</span>
-                      <span className="post-date">{listing.propertyBuildDate}</span>
+                      <span className="post-date">{Moment(listing.propertyBuildDate).format("MM-DD-YYYY")}</span>
                     </div>
                     <div className="listing-details">
                       <div className="floor-space">

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Carousel } from 'react-responsive-carousel';
 import AliceCarousel from 'react-alice-carousel';
 import "react-alice-carousel/lib/scss/alice-carousel.scss";
+import Moment from 'moment';
 
 
 
@@ -30,10 +31,13 @@ class propertyDetails extends React.Component {
       temp: [],
       disableBtn: false,
       btnName: "Start an Offer",
-      proceedBtn: false
+      proceedBtn: false,
+      email:"",
     }
     this.handleChange = this.handleChange.bind(this);
     this.addToBuyer = this.addToBuyer.bind(this);
+    this.checkUser = this.checkUser.bind(this);
+    this.loadUserDetails = this.loadUserDetails.bind(this);
   }
 
   componentDidMount() {
@@ -43,7 +47,16 @@ class propertyDetails extends React.Component {
     }
     this.loadSellerDetails()
     this.getData()
+    this.loadUserDetails()
   }
+
+  loadUserDetails() {
+    const temp = JSON.parse(localStorage.getItem('user'))
+    console.log("heyyy "+temp)
+    this.setState({
+        email: temp.emailId
+    })
+}
 
   loadSellerDetails() {
     const temp = JSON.parse(localStorage.getItem('user'))
@@ -72,7 +85,14 @@ class propertyDetails extends React.Component {
     }
   }
 
-
+  checkUser(){
+    if(this.state.email === this.state.data.seller.emailId){
+      this.setState({
+        disableBtn: true,
+        btnName: "You are seller of this property",
+      })
+    }
+  }
   //add new task to list
   addNewTask = () => {
     this.setState({
@@ -89,6 +109,7 @@ class propertyDetails extends React.Component {
         this.setState({
           data: responseList,
         })
+        this.checkUser();
         if (responseList.buyer) {
           this.setState({
             disableBtn: true,
@@ -158,7 +179,7 @@ class propertyDetails extends React.Component {
                 <label>Property Type</label>
                 <input id="proptype" value={this.state && this.state.data && this.state.data.propertyType} disabled></input><br />
                 <label>Property Build Date</label>
-                <input className="propDate" id="propdate" value={this.state && this.state.data && this.state.data.propertyBuildDate} disabled></input>
+                <input id="propdate" value={Moment(this.state && this.state.data && this.state.data.propertyBuildDate).format('MM-DD-YYYY')} disabled></input>
               </div>
 
               <button className="contact-seller-btn" onClick={this.addNewTask}>Contact Seller</button>
