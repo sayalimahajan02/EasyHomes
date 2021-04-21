@@ -2,6 +2,7 @@ import React from 'react';
 import './../FrontPage/FrontPageAndSearch.scss';
 import Video1 from './../videos/house1.mp4';
 import SearchBar from './../FrontPage/SearchBar';
+import PropBar from './../PropBar/PropBar';
 
 class FrontPage extends React.Component {
   constructor(props) {
@@ -46,8 +47,11 @@ class FrontPage extends React.Component {
                 </li>
               </ul>
             </div>
-            <SearchBar />
-          </div>
+            <SearchBar />                        
+          </div>          
+        </div>
+        <div>
+            <PropBar/>
         </div>
       </div>
     )
