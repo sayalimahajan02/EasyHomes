@@ -1,6 +1,10 @@
 import React from 'react';
 import './propertyDetails.scss';
 import { Link } from 'react-router-dom';
+import { Carousel } from 'react-responsive-carousel';
+import AliceCarousel from 'react-alice-carousel';
+import "react-alice-carousel/lib/scss/alice-carousel.scss";
+
 
 
 class propertyDetails extends React.Component {
@@ -80,7 +84,6 @@ class propertyDetails extends React.Component {
       .then(responseList => {
         this.setState({
           data: responseList,
-          //temp: JSON.parse(responseList)
         })
         if (responseList.buyer) {
           this.setState({
@@ -92,10 +95,6 @@ class propertyDetails extends React.Component {
       .catch(error => {
         console.log("error:" + error)
       });
-
-
-    //gtet contact
-
   }
 
   //put data
@@ -118,19 +117,39 @@ class propertyDetails extends React.Component {
       })
   }
 
+  // renderPhotos = (source) => {
+  //   // let images;
+  //   // if (source.length >= 1) {
+  //   //   images = source.map((photo) => {
+  //   //     return photo.blob.slice(5, photo.blob.length);
+  //   //   });
+  //   //   console.log(images)
+  //   // } else {
+  //   //   return (
+  //   //     <div>No Images found</div>
+  //   //   )
+  //   // }
+  //   console.log(source)
+  //   return (
+  //     source.map((imgUrl) => {
+  //       <div>
+  //         <img src={imgUrl.blob.slice(5, imgUrl.blob.length)} />
+  //       </div>
+  //     })
+  //   );
+  // };
+
   renderPhotos = (source) => {
     console.log('source: ', source);
     if (source && source.length >= 1) {
       return source.map((photo) => {
         return <img src={photo.blob.slice(5, photo.blob.length)} alt="" />;
-
       });
     } else {
       return (
         <div>No Images found</div>
       )
     }
-
   };
 
   render() {
@@ -185,7 +204,7 @@ class propertyDetails extends React.Component {
           </div>
         </div>
 
-        <div className="result">
+        {/* <div>
           {
             this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
               console.log(e)
@@ -194,7 +213,29 @@ class propertyDetails extends React.Component {
               )
             })
           }
-        </div>
+        </div> */}
+
+        {/* <Carousel>
+          {this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
+            console.log(e)
+            return (
+              <img src={e}></img>
+            )
+          })
+          }
+        </Carousel> */}
+
+        <AliceCarousel autoPlay autoPlayInterval="3000">{
+          this.state.data.selectedImages && this.state.data.selectedImages.map((e, i) => {
+            console.log(e)
+            return (
+              <img src={e} className="sliderimg" />
+
+            )
+          })
+        }
+
+        </AliceCarousel>
       </>
     )
   }
