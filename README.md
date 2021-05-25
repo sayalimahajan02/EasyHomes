@@ -45,5 +45,5 @@ $npm start<br>
 <br><br>
 ###Authors <hr>
 Name : Easy Homes<br>
-Team Members: Sayali Mahajan | Ajay Prasad | Aishwarya Samel | Nakul Deshpande <br>
+Author : Sayali Mahajan <br>
 
